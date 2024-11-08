@@ -1,33 +1,68 @@
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [data, setData] = useState({
+    description: "",
+    image: ""
+  })
+
+  const sendImage = async (e) => {
+    e.preventDefault()
+
+    const formData = new FormData();
+    formData.append("description", data.description);
+    formData.append("image", data.image);
+
+    try {
+
+      const response = await fetch("http://127.0.0.1:8000/api/send_image/", {
+        method:"POST",
+        headers:{
+          'Authorization': 'Token c4fa23431583920b135b668fc9902efb7b6480a7'
+        },
+        body : formData,
+      })
+      
+      if(response.ok){
+        const data = await response.json()
+        console.log(data)
+      }else{
+        const errorData = await response.json()
+        console.log(errorData)
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <form 
+    onSubmit={sendImage}
+    >
+      <input type="text" name='description' value={data.description} onChange={(e) => {
+        setData((currentData) => ({...currentData, description: e.target.value}))
+      }} />
+      <br /> <br />
+
+      <input 
+      type="file" 
+      name='image' 
+      onChange={(e) => {
+          setData((currentData) => ({
+            ...currentData,
+             image: e.target.files[0]
+            }))
+      }} />
+
+      <br /><br />
+
+      <input type="submit" />
+    </form>
     </>
   )
 }
