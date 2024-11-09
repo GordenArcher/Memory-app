@@ -1,68 +1,24 @@
-
-import { useState } from 'react'
+import {Routes, Route } from 'react-router-dom'
 import './App.css'
+import { Login } from './pages/auth/Login'
+import { AuthContext } from './utils/context/AuthContext'
+import { useContext } from 'react'
+import { HomePage } from './pages/HomePage'
+import { PasswordReset } from './pages/Password-reset'
+import { ResetPassword } from './pages/ResetPassword'
 
 function App() {
 
-  const [data, setData] = useState({
-    description: "",
-    image: ""
-  })
-
-  const sendImage = async (e) => {
-    e.preventDefault()
-
-    const formData = new FormData();
-    formData.append("description", data.description);
-    formData.append("image", data.image);
-
-    try {
-
-      const response = await fetch("http://127.0.0.1:8000/api/send_image/", {
-        method:"POST",
-        headers:{
-          'Authorization': 'Token c4fa23431583920b135b668fc9902efb7b6480a7'
-        },
-        body : formData,
-      })
-      
-      if(response.ok){
-        const data = await response.json()
-        console.log(data)
-      }else{
-        const errorData = await response.json()
-        console.log(errorData)
-      }
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const { token } = useContext(AuthContext)
 
   return (
     <>
-    <form 
-    onSubmit={sendImage}
-    >
-      <input type="text" name='description' value={data.description} onChange={(e) => {
-        setData((currentData) => ({...currentData, description: e.target.value}))
-      }} />
-      <br /> <br />
+      <Routes>
+        <Route path='/' element={ token? <HomePage /> : <Login />} />
+        <Route path='request-password/' element={<PasswordReset /> } />
+        <Route path='reset-password/:uidb64/:token' element={<ResetPassword /> } />
+      </Routes>
 
-      <input 
-      type="file" 
-      name='image' 
-      onChange={(e) => {
-          setData((currentData) => ({
-            ...currentData,
-             image: e.target.files[0]
-            }))
-      }} />
-
-      <br /><br />
-
-      <input type="submit" />
-    </form>
     </>
   )
 }

@@ -1,15 +1,24 @@
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_decode
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.shortcuts import render
-from django.template.context_processors import request
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Memory
 from .serializers import MemorySerializers
 from django.contrib.auth.models import User
 from django.contrib import auth
+from django.contrib.auth import get_user_model
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 
@@ -38,6 +47,8 @@ def login(request):
 
 
 @api_view(['POST'])
+@login_required()
+@permission_classes([IsAuthenticated])
 def send_image(request):
     data = request.data
     image = request.FILES.get('image')
@@ -61,8 +72,84 @@ def send_image(request):
 
 
 @api_view(['GET'])
+@login_required()
+@permission_classes([IsAuthenticated])
 def home_page(request):
-    Images = Memory.objects.all()
+    Images = Memory.objects.filter(user=request.user)
     serializer = MemorySerializers(Images, many=True)
 
     return Response({"data":serializer.data}, status=status.HTTP_200_OK)
+
+
+
+@api_view(['POST'])
+def send_email(request):
+    email = request.data.get("email")
+
+    user = User.objects.filter(email=email).first()
+
+    try:
+        if user:
+
+            reset_token = PasswordResetTokenGenerator().make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+
+            context = {
+                'reset_url': f'http://localhost:5173/reset-password/{uid}/{reset_token}',
+                'username': user.username,
+                'message': "Babe, you forgot your password? No problem,"
+            }
+
+            html_message = render_to_string('change_password_email.html', context)
+            plain_message = strip_tags(html_message)
+            subject = "Change Password"
+            from_email = "archergorden@gmail.com"
+            recipient_list = [email]
+
+            email_message = EmailMessage(subject, html_message, from_email, recipient_list)
+            email_message.content_subtype = "html"
+            email_message.send()
+
+            return Response({"message": "Email sent successfully."}, status=status.HTTP_200_OK)
+
+        else:
+            return Response({"error": f"'{email}' is not a user"}, status=status.HTTP_400_BAD_REQUEST)
+
+    except Exception as e:
+        return Response({"error": f"Error sending email: {e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET', 'POST'])
+def reset_password(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = get_user_model().objects.get(pk=uid)
+
+        if not default_token_generator.check_token(user, token):
+            return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if request.method == 'GET':
+
+            return Response({
+                "message": "Token is valid. Please provide a new password."
+            }, status=status.HTTP_200_OK)
+
+        elif request.method == 'POST':
+            password = request.data.get("password")
+            if not password:
+                return Response({"error": "Password is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+            user.set_password(password)
+            user.save()
+
+            token, created = Token.objects.get_or_create(user=user)
+
+            # Return the new token and user data
+            return Response({
+                "message": "Password reset successful.",
+                "token": token.key
+            }, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response({"error": f"Something occurred: {str(e)}. Please try again later."},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
