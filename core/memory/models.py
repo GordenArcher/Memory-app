@@ -9,3 +9,8 @@ class Memory(models.Model):
     image = models.ImageField(upload_to='memories')
     description = models.TextField(max_length=100000, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
+
+
+class ProfilePic(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile_image = models.ImageField(upload_to='profilePic')

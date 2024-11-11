@@ -3,10 +3,10 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ProfilePicSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import Memory
+from .models import Memory, ProfilePic
 from .serializers import MemorySerializers
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -164,3 +164,28 @@ def get_user(request):
 
     serializer = UserSerializer(user)
     return Response({"data":serializer.data}, status=status.HTTP_200_OK)
+
+
+
+
+@api_view(['POST'])
+@login_required()
+@permission_classes([IsAuthenticated])
+def set_profil_pic(request):
+    image = request.FILES.get('profile_image')
+
+    try:
+
+        if not request.user.is_authenticated:
+            return Response(
+                {"error": "Baby log in before you set a profile picture"},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        image_entry = ProfilePic.objects.create(user=request.user, profile_image=image)
+        serializer = ProfilePicSerializer(image_entry)
+
+        return Response({"data": serializer.data}, status=status.HTTP_201_CREATED)
+
+    except Exception as e:
+        return Response({"error":f"Error creating Memory entry: {e}"})

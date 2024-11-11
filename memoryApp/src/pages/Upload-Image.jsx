@@ -127,6 +127,7 @@ export const UpLoadImage = () => {
                                       onChange={handleImageChange} />
 
                                     {
+                                      
                                     image && 
                                       <img src={image} alt="image selected" style={{ maxWidth: "250px", marginTop: "20px" }} />
                                     }

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .home, .home_page, nav, .nav, .navbar, .links, .profile_image, .childern_,
 .main_page, .main-memory, .main_grid, main, .memory-container, .mem-wrapper,
 .memory_image, .memo-about{
@@ -127,4 +129,45 @@
 .date{
     font-size: .8rem;
     color: hsla(241, 97%, 24%, 0.452);
+}
+
+.logo-memory {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem; 
+    font-weight: bold; 
+    color: #2c3e50; 
+    text-transform: capitalize; 
+    text-align: center;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 1px; 
+    padding: 20px; 
+    border-radius: 50px; 
+    /* background-color: #f39c12;  */
+    color: white; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.logo-memory:hover {
+    transform: scale(1.05); 
+    background-color: hsla(0, 0%, 100%, 0.108); 
+}
+
+.logo-icon {
+    font-size: 3rem; 
+    animation: bounce 0.6s infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
 }

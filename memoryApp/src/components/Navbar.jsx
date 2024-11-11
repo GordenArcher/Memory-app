@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../utils/context/AuthContext"
 import '../assets/CSS/home.css'
 import { FetchUser } from "../utils/hooks/FetchUser"
+import Avatar from '../assets/avatar-4.png'
 
 export const Navbar = () => {
 
@@ -22,7 +23,10 @@ export const Navbar = () => {
     <div className="nav">
         <div className="navbar">
             <div className="logo">
-                <img src="" alt="logo" />
+            <h1 className="logo-memory">
+                <span className="logo-icon">🧠</span> Memory
+            </h1>
+                {/* <img src="" alt="logo" /> */}
             </div>
 
             <div className="nav-links">
@@ -65,7 +69,7 @@ export const Navbar = () => {
             <div className="profile">
                 <div className="set-profile">
                     <div className="profile_image" onClick={() => setShowChildProfile((currentState) => !currentState)}>
-                        <img src="" alt="" />
+                        <img src={Avatar} alt="" />
                     </div>
                     <div className="setNew">
                             <i className="bi bi-image-fill"></i>
