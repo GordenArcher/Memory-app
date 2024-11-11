@@ -1,22 +1,22 @@
 import { useContext, useState } from 'react'
 import { Loader } from '../../components/Loader'
-import { Link, useNavigate } from 'react-router-dom'
-import LoginImage from '../../assets/logg.jpg'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom'
+import LoginImage from '../../assets/login-D1gCEgnq.svg'
+import {  toast } from 'react-toastify';
 import { AuthContext } from '../../utils/context/AuthContext';
+import { Notify } from '../../components/Notify';
 
 export const Login = () => {
 
     const { saveToken } = useContext(AuthContext)
-    const navigate = useNavigate()
     const [viewPassword, setViewPassword] = useState(false)
     const [loader, setLoader] = useState(false)
     const [data, setData] = useState({
         username: "",
         password: ""
       })
-      const notify = (e) => toast(e);
+      
+      const notify = (e) => toast(e)
     
       const loginUser = async (e) => {
         e.preventDefault()
@@ -44,8 +44,11 @@ export const Login = () => {
             setLoader(false)
             const data = await response.json()
             notify(data.success)
-            saveToken(data.token)
-            navigate("/")
+            setData("")
+            setTimeout(() => {
+                saveToken(data.token)
+            },2000)
+            
           }else{
             setLoader(false)
             const errorData = await response.json()
@@ -60,6 +63,11 @@ export const Login = () => {
         }
       }
 
+      document.addEventListener('keypress', (e) => {
+        if (e.key === "Enter"){
+            loginUser()
+        }
+    })
 
   return (
 
@@ -73,13 +81,14 @@ export const Login = () => {
                             <span>Welcome, love! 💖 <br /> I&apos;m so glad to have you here. Log in and let&apos;s keep creating memories together. Every moment here is just for us—enjoy it!</span>
                         </div>
 
-                        {/* <div className="left_image">
+                        <div className="left_image">
                             <img src={LoginImage} alt="login image" />
-                        </div> */}
+                        </div>
 
                         
                     </div>
                 </div>
+                <div className="line"></div>
                 <div className="login_right">
                     <div className="auth_wrapper">
                         <div className="auth_head">
@@ -111,7 +120,7 @@ export const Login = () => {
                                    <div className="form_input">
                                         <label htmlFor="password">Password</label>
                                         <input 
-                                        type="password" 
+                                        type={viewPassword ? 'text' : 'password'} 
                                         name='password' 
                                         id='password'
                                         onChange={(e) => {
@@ -135,7 +144,7 @@ export const Login = () => {
                                             </div>
 
                                             <div className="s-text">
-                                                <p style={{color:'#000'}}>Show Password</p>
+                                                <p>Show Password</p>
                                             </div>
                                         </div>
 
@@ -155,19 +164,7 @@ export const Login = () => {
             </div>
         </div>
 
-        <ToastContainer
-        position="top-center"
-        autoClose={2000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition: Slide
-        />
+        <Notify />
     </div>
   )
 }

@@ -3,7 +3,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.shortcuts import render
+from .serializers import UserSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import Memory
@@ -102,7 +102,7 @@ def send_email(request):
 
             html_message = render_to_string('change_password_email.html', context)
             plain_message = strip_tags(html_message)
-            subject = "Change Password"
+            subject = "Reset Password"
             from_email = "archergorden@gmail.com"
             recipient_list = [email]
 
@@ -110,7 +110,7 @@ def send_email(request):
             email_message.content_subtype = "html"
             email_message.send()
 
-            return Response({"message": "Email sent successfully."}, status=status.HTTP_200_OK)
+            return Response({"success": "Email sent successfully."}, status=status.HTTP_200_OK)
 
         else:
             return Response({"error": f"'{email}' is not a user"}, status=status.HTTP_400_BAD_REQUEST)
@@ -153,3 +153,14 @@ def reset_password(request, uidb64, token):
     except Exception as e:
         return Response({"error": f"Something occurred: {str(e)}. Please try again later."},
                         status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+@api_view(['GET'])
+def get_user(request):
+    user = request.user
+
+    serializer = UserSerializer(user)
+    return Response({"data":serializer.data}, status=status.HTTP_200_OK)
