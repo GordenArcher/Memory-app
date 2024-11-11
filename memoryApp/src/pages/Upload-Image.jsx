@@ -84,63 +84,63 @@ export const UpLoadImage = () => {
       <Navbar />
         <div className="upload_data">
             <div className="upload_wrapper">
-                <div className="upload_left">
-                  <div className="upload_left_wrap">
-                    <div className="message">
-                      <span>Welcome, my love! 💖<br /> Upload your favorite memory and make my heart smile! 😘</span>
-                    </div>
+              <div className="upload_left">
+                <div className="upload_left_wrap">
+                  <div className="message">
+                    <span>Welcome, my love! 💖<br /> Upload your favorite memory and make my heart smile! 😘</span>
+                  </div>
 
-                    <div className="upload_left_image">
-                      <img src={uploadImage} alt="upload image"/>
+                  <div className="upload_left_image">
+                    <img src={uploadImage} alt="upload image"/>
 
-                    </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="line"></div>
+              <div className="line"></div>
 
-                <div className="upload_right">
-                    <div className="upload_right_wrapper">
-                        <div className="upload_auth">
-                            <form onSubmit={sendImage}>
-                                <div className="upload_form">
-                                  <div className="upload_input desck">
-                                    <label htmlFor="description">Description</label>
-                                    <input 
-                                    type="text" 
-                                    name='description' 
-                                    value={data.description} 
-                                    onChange={(e) => {
-                                        setData((currentData) => ({...currentData, description: e.target.value}))
-                                    }} />
+              <div className="upload_right">
+                  <div className="upload_right_wrapper">
+                      <div className="upload_auth">
+                          <form onSubmit={sendImage}>
+                              <div className="upload_form">
+                                <div className="upload_input desck">
+                                  <label htmlFor="description">Description</label>
+                                  <input 
+                                  type="text" 
+                                  name='description' 
+                                  value={data.description} 
+                                  onChange={(e) => {
+                                      setData((currentData) => ({...currentData, description: e.target.value}))
+                                  }} />
 
-                                    <button>
-                                      <i className='bi bi-paragraph'></i>
-                                    </button>
-                                  </div>
-
-                                  <div className="upload_input_image">
-                                    <input 
-                                      type="file" 
-                                      name='image' 
-                                      accept="image/*"
-                                      onChange={handleImageChange} />
-
-                                    {
-                                      
-                                    image && 
-                                      <img src={image} alt="image selected" style={{ maxWidth: "250px", marginTop: "20px" }} />
-                                    }
-                                  </div>
-
-                                    <div className="upload_button">
-                                      <button>{isLoading ? <Loader /> : "Upload"}</button>
-                                    </div>
+                                  <button>
+                                    <i className='bi bi-paragraph'></i>
+                                  </button>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
+                                <div className="upload_input_image">
+                                  <input 
+                                    type="file" 
+                                    name='image' 
+                                    accept="image/*"
+                                    onChange={handleImageChange} />
+
+                                  {
+
+                                  image && 
+                                    <img src={image} alt="image selected" style={{ maxWidth: "250px", marginTop: "20px" }} />
+                                  }
+                                </div>
+
+                                  <div className="upload_button">
+                                    <button>{isLoading ? <Loader /> : "Upload"}</button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
         <Notify />

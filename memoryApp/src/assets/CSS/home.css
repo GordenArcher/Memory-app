@@ -34,6 +34,10 @@
     list-style: none;
 }
 
+.set-profile-children{
+    z-index: 1;
+}
+
 .childern_{
     padding: 20px;
 }
@@ -147,8 +151,6 @@
     letter-spacing: 1px; 
     padding: 20px; 
     border-radius: 50px; 
-    /* background-color: #f39c12;  */
-    color: white; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
@@ -163,11 +165,39 @@
     animation: bounce 0.6s infinite alternate;
 }
 
+.show{
+    display: none;
+}
+
 @keyframes bounce {
     0% {
         transform: translateY(0);
     }
     100% {
         transform: translateY(-10px);
+    }
+}
+
+@media screen and (max-width:786px) {
+    .nav-links{
+        display: none;
+    }
+
+    .logo-memory {
+        font-size: 1.2rem; 
+    }
+
+    .logo-icon {
+        font-size: 2rem; 
+    }
+
+    .show{
+        display: initial;
+    }
+
+    .main_grid{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
     }
 }

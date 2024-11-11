@@ -287,7 +287,7 @@
     padding: 20px;
   }
 
-  .login_wrapper{
+  .login_wrapper, .upload_wrapper, .request_wrapper{
     flex-direction: column;
   }
 
@@ -297,11 +297,15 @@
 
   .line{
     width: 100%;
-    height: 5px;
+    height: 3px;
   }
 
   .message{
     font-size: 1rem;
+  }
+
+  .right_mess{
+    font-size: .7rem;
   }
 
   .auth_wrapper, .form_{
@@ -323,22 +327,22 @@
   .fpass, .s-text{
     font-size: .7rem;
   }
-  
+
+  .slide label{
+    width: 38px;
+    height: 22px;
+  }
+
+  .slide label::after{
+    width: 18px;
+    height: 18px;
+  }
+
+  .slide input:checked ~ label::after{
+    left: 18px;
+    background: hsl(0, 0%, 100%);
+  }
 
 
-.slide label{
-  width: 38px;
-  height: 22px;
-}
-
-.slide label::after{
-  width: 18px;
-  height: 18px;
-}
-
-.slide input:checked ~ label::after{
-  left: 18px;
-  background: hsl(0, 0%, 100%);
-}
 
 }

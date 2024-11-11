@@ -23,9 +23,11 @@ export const Navbar = () => {
     <div className="nav">
         <div className="navbar">
             <div className="logo">
-            <h1 className="logo-memory">
-                <span className="logo-icon">🧠</span> Memory
-            </h1>
+                <Link to={"/"}>
+                    <h1 className="logo-memory">
+                        <span className="logo-icon">🧠</span> Memory
+                    </h1>
+                </Link>
                 {/* <img src="" alt="logo" /> */}
             </div>
 
@@ -96,6 +98,14 @@ export const Navbar = () => {
                                             <i className="bi bi-person-check"></i>
                                         </div>
                                         <div className="name">Profile</div>
+                                    </Link>
+                                </li>
+                                <li className="show">
+                                    <Link to={"/upload"}>
+                                        <div className="p_icon">
+                                            <i className="bi bi-cloud-upload"></i>
+                                        </div>
+                                        <div className="name">Upload</div>
                                     </Link>
                                 </li>
                                 <li>
