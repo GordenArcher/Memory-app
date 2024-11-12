@@ -24,7 +24,7 @@ export const PasswordReset = () => {
         try {
             setIsLoading(true)
 
-            const response = await fetch("http://127.0.0.1:8000/api/send_reset_password_mail/", {
+            const response = await fetch("https://gordenarcher.pythonanywhere.com/api/send_reset_password_mail/", {
                 method:'POST',
                 headers: {
                     "Content-Type":"application/json"

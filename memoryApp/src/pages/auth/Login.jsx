@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { Loader } from '../../components/Loader'
 import { Link } from 'react-router-dom'
-import LoginImage from '../../assets/login-D1gCEgnq.svg'
+import LoginImage from '../../assets/login.svg'
 import {  toast } from 'react-toastify';
 import { AuthContext } from '../../utils/context/AuthContext';
 import { Notify } from '../../components/Notify';
@@ -29,7 +29,7 @@ export const Login = () => {
 
             setLoader(true)
     
-          const response = await fetch("http://127.0.0.1:8000/api/login/", {
+          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/login/", {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

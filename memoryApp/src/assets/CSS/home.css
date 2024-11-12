@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .home, .home_page, nav, .nav, .navbar, .links, .profile_image, .childern_,
 .main_page, .main-memory, .main_grid, main, .memory-container, .mem-wrapper,
-.memory_image, .memo-about{
+.memory_image, .memo-about, .memory-date, .date{
     width: 100%;
     height: 100%;
 }
@@ -131,6 +131,8 @@
 }
 
 .date{
+    display: flex;
+    gap: 10px;
     font-size: .8rem;
     color: hsla(241, 97%, 24%, 0.452);
 }

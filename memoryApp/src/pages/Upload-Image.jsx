@@ -26,13 +26,13 @@ export const UpLoadImage = () => {
         formData.append("description", data.description);
         formData.append("image", data.image);
 
-        if(!data.description.trim()) return notify("Enter a valid Description");
+        // if(!data.description.trim()) return notify("Enter a valid Description");
 
         if(!data.image ) return notify("No Image was selected")
     
         try {
           setIsLoading(true)
-          const response = await fetch("http://127.0.0.1:8000/api/send_image/", {
+          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/send_image/", {
             method:"POST",
             headers:{
               'Authorization': `Token ${token}`

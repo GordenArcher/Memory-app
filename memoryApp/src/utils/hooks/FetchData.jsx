@@ -9,7 +9,7 @@ export const FetchData = () => {
     useEffect(() => {
         const getUserData = async () => {
             try {
-                const response = await fetch("http://localhost:8000/api/home_page/", {
+                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/home_page/", {
                     method:'GET',
                     headers : {
                         "Content-Type":"application/json",

@@ -71,16 +71,13 @@
 .left_image img, .upload_left_image img{
   width: 100%;
   height: 100%;
-  margin-left: -90px;
-  margin-top: -90px;
   object-fit: cover;
   position: relative;
 }
 
-.upload_left_image img{
-  margin: 0;
+.left_image img{
+  width: 80%;
 }
-
 
 .reset_left_image img{
   width: 100%;
@@ -254,11 +251,6 @@
   align-items: center;
 }
 
-.left_image img{
-  width: 100%;
-  height: 100%;
-}
-
 .right_mess{
   font-size: .8rem;
 }
@@ -291,8 +283,16 @@
     flex-direction: column;
   }
 
-  .left_image{
+  /* .left_image{
     display: none;
+  } */
+
+  .left_image{
+    text-align: center;
+  }
+
+  .left_image img{
+    width: 30%;
   }
 
   .line{

@@ -9,7 +9,7 @@ export const MemoryComp = ({ d }) => {
     <div className="memory-container">
         <div className="mem-wrapper">
             <div className="memory_image">
-                <img src={`http://127.0.0.1:8000${d.image}`} alt="memory" />
+                <img src={`https://gordenarcher.pythonanywhere.com${d.image}`} alt="memory" />
             </div>
             
             {d.description && 
@@ -23,6 +23,7 @@ export const MemoryComp = ({ d }) => {
 
             <div className="memory-date">
                 <div className="date">
+                    <span>Uploaded on </span>
                     <p>{newDate}</p>
                 </div>
             </div>
