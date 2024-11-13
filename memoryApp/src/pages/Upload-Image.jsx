@@ -26,7 +26,7 @@ export const UpLoadImage = () => {
         formData.append("description", data.description);
         formData.append("image", data.image);
 
-        // if(!data.description.trim()) return notify("Enter a valid Description");
+        if(!data.description.trim()) return notify("Enter a valid Description");
 
         if(!data.image ) return notify("No Image was selected")
     
@@ -46,7 +46,6 @@ export const UpLoadImage = () => {
             notify("Memory Uploaded")
             setIsLoading(false)
             setData("")
-            formData("")
           }else{
             const errorData = await response.json()
             console.log(errorData)

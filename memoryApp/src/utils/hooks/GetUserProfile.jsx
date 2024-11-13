@@ -1,18 +1,15 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 
-export const FetchData = () => {
+export const FetchProfilePic = () => {
 
     const { token } = useContext(AuthContext)
-    const [dataFetched, setDataFetched] = useState([])
-    const [isLoading, setIsLoading] = useState(false)
+    const [dataFetched, setDataFetched] = useState({})
 
     useEffect(() => {
-        const getUserData = async () => {
+        const getUserProfile = async () => {
             try {
-                setIsLoading(true)
-
-                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/home_page/", {
+                const response = await fetch("http://localhost:8000/api/get_profile_pic/", {
                     method:'GET',
                     headers : {
                         "Content-Type":"application/json",
@@ -22,26 +19,22 @@ export const FetchData = () => {
         
                 if(response.ok){
                     const data = await response.json()
+                    console.log(data.data)
                     setDataFetched(data.data)
-                    setIsLoading(false)
                 }else{
                     const errorData = await response.json()
                     console.log(errorData)
-                    setIsLoading(false)
                 }
     
     
             } catch (error) {
                 console.log(error)
             }
-            finally{
-                setIsLoading(false)
-            }
         }
 
-        getUserData()
+        getUserProfile()
     }, [token])
 
-  return { data : dataFetched, isLoading }
-}
+  return {pic : dataFetched}
 
+}

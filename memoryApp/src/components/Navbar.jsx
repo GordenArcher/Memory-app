@@ -4,13 +4,14 @@ import { AuthContext } from "../utils/context/AuthContext"
 import '../assets/CSS/home.css'
 import { FetchUser } from "../utils/hooks/FetchUser"
 import Avatar from '../assets/avatar-4.png'
+import { FetchProfilePic } from "../utils/hooks/GetUserProfile"
 
 export const Navbar = () => {
 
     const [showChildProfile, setShowChildProfile] = useState(false)
     const { logOut } = useContext(AuthContext)
     const { username } = FetchUser()
-    console.log(username)
+    const { dataFetched } = FetchProfilePic()
 
     const navigate = useNavigate()
 

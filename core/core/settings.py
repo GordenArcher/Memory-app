@@ -58,6 +58,7 @@ CORS_ALLOWED_ORIGINS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -68,6 +69,16 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "LOCATION": os.path.join(BASE_DIR, "media"),
+    },
+}
 
 TEMPLATES = [
     {
@@ -97,6 +108,15 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# import environ
+#
+# env = environ.Env()
+# environ.Env.read_env()
+#
+# DATABASES = {
+#     'default': env.db('DATABASE_URL', default='postgresql://localhost:5432/memory_hhb8')
+# }
 
 
 # Password validation
@@ -142,6 +162,8 @@ EMAIL_HOST_PASSWORD = 'cbantprfniwuzrjo'
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media/')

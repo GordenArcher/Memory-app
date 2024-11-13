@@ -8,6 +8,7 @@ import { PasswordReset } from './pages/Password-reset'
 import { ResetPassword } from './pages/ResetPassword'
 import { EmailSent } from './pages/Email-Sent'
 import { UpLoadImage } from './pages/Upload-Image'
+import { Profile } from './pages/Profile'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path='reset-password/:uidb64/:token' element={<ResetPassword /> } />
         <Route path='sent-mail/' element={<EmailSent /> } />
         <Route path='upload/' element={<UpLoadImage /> } />
+        <Route path='profile/' element={<Profile /> } />
       </Routes>
     </>
   )

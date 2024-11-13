@@ -18,7 +18,6 @@ export const FetchUser = () => {
                 });
         
                 const data = await response.json();
-                console.log(data.data);  
                 setUser(data.data)
             } catch (error) {
                 console.log("Error:", error);
