@@ -20,8 +20,6 @@ export const Navbar = () => {
         navigate("/")
     }
 
-    //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
-
   return (
     <div className="nav">
         <div className="navbar">
