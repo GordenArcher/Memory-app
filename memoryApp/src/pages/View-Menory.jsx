@@ -16,6 +16,12 @@ export const ViewMenory = () => {
     const { id } = useParams()
     const notify = (e) => toast(e)
 
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    const handleImageClick = () => {
+      setIsFullscreen(true);
+    };
+
     const dateCreated = memoryData.date_created;
     const date = new Date(dateCreated);
     const newDate = date.toDateString()
@@ -71,12 +77,12 @@ export const ViewMenory = () => {
 
         <div className="main-memory">
             <div className="memory-container" >
-                <div className="mem-wrapper">
-                    <div className="memory_image">
-                        <img src={`https://gordenarcher.pythonanywhere.com${memoryData.image}`} alt="memory" />
+                <div className="mem-wrapper mm">
+                    <div className="memory_image mi">
+                        <img src={`https://gordenarcher.pythonanywhere.com${memoryData.image}`} alt="memory" onClick={handleImageClick} />
                     </div>
                     
-                    <div>
+                    <div className='hm'>
                         {memoryData.description && 
                             <div className="memory-descriptio">
                                 <div className="memo-about">
@@ -92,18 +98,21 @@ export const ViewMenory = () => {
                                 <p>{newDate}</p>
                             </div>
                         </div>
+
+                        <div className="options">
+                            <div className="delete" onClick={deleteMemory}>
+                                <button>{isLoading ? <Loader /> : "Delete"}</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <form onSubmit={deleteMemory}>
-
-                <div className="options">
-                    <div className="delete">
-                        <button>{isLoading ? <Loader /> : "Delete"}</button>
-                    </div>
+            {isFullscreen && (
+                <div className="fullscreen-overlay" onClick={() => setIsFullscreen(false)}>
+                    <img src={`https://gordenarcher.pythonanywhere.com${memoryData.image}`} alt="Image" className="fullscreen-image" />
                 </div>
-            </form>
+            )}
 
         </div>
 

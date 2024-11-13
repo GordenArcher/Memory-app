@@ -1,0 +1,103 @@
+.mm{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.mi, .hm{
+    width: 100%;
+}
+
+.mm .memory_image{
+    height: 100%;
+}
+
+.mm .memory_image img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.mm .date{
+    font-size: 1.5rem;
+}
+
+.mm .hm{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.options .delete{
+    width: 100%;
+}
+
+.options .delete button{
+    width: 100%;
+}
+
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: contain;
+    z-index: 1000;
+  }
+  
+  .fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fullscreen-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+  }
+  
+
+@media screen and (max-width:786px) {
+    .mm{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .mm .memory_image{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .mm .memory_image img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .memo-about{
+        font-size: 1.2rem;
+    }
+
+    .options{
+        padding: 20px;
+    }
+
+    .options .delete{
+        width: 100%;
+    }
+
+    .options .delete button{
+        width: 100%;
+    }
+}
