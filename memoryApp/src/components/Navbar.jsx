@@ -11,7 +11,7 @@ export const Navbar = () => {
     const [showChildProfile, setShowChildProfile] = useState(false)
     const { logOut } = useContext(AuthContext)
     const { username } = FetchUser()
-    const { dataFetched } = FetchProfilePic()
+    const { pic } = FetchProfilePic()
 
     const navigate = useNavigate()
 
@@ -19,6 +19,8 @@ export const Navbar = () => {
         logOut()
         navigate("/")
     }
+
+    //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
 
   return (
     <div className="nav">
@@ -55,16 +57,6 @@ export const Navbar = () => {
                                 </div>
                             </Link>
                         </li>
-                        {/* <li>
-                            <Link>
-                                <div className="icon">
-                                    <i className="bi bi-"></i>
-                                </div>
-                                <div className="name">
-                                    <p></p>
-                                </div>
-                            </Link>
-                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -72,11 +64,8 @@ export const Navbar = () => {
             <div className="profile">
                 <div className="set-profile">
                     <div className="profile_image" onClick={() => setShowChildProfile((currentState) => !currentState)}>
-                        <img src={Avatar} alt="" />
+                        <img src={pic == null ? Avatar : `https://gordenarcher.pythonanywhere.com/${pic.profile_image}` } alt="" />
                     </div>
-                    <div className="setNew">
-                            <i className="bi bi-image-fill"></i>
-                        </div>
                 </div>
                 
                 {

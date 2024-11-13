@@ -52,6 +52,36 @@
     flex-direction: column;
 }
 
+.back{
+    position: relative;
+    padding: 40px;
+}
+
+.back button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.back button i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: hsl(241, 97%, 24%);
+    transition: all .3s ease;
+}
+
+.back button:hover{
+    background: hsl(241, 97%, 24%);
+}
+
+.back button:hover i{
+    color: hsl(0, 0%, 100%);
+}
+
 .links ul a, .childern_ ul a, .s{
     display: flex;
     align-items: center;

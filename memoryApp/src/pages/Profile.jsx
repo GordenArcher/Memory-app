@@ -35,7 +35,7 @@ export const Profile = () => {
             formData.append("profile_image", profilePic);
     
             try {
-                const response = await fetch("http://localhost:8000/api/profile_pic/", {
+                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/profile_pic/", {
                     method:"POST",
                     headers:{
                         "Authorization":`Token ${token}`
@@ -74,7 +74,7 @@ export const Profile = () => {
                     <div className="profile_right_wrapper">
                         <div className="profile_image">
 
-                            <img src={`http://127.0.0.1:8000/${pic.profile_image}`} alt="image" style={{width:'200px', height:'200px'}} />
+                            <img src={`https://gordenarcher.pythonanywhere.com/${pic.profile_image}`} alt="image" style={{width:'200px', height:'200px'}} />
                                 
                             <input
                             type='file'

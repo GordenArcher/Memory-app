@@ -1,3 +1,4 @@
+import { useNavigate, useParams } from "react-router-dom";
 
 export const MemoryComp = ({ d }) => {
 
@@ -5,8 +6,16 @@ export const MemoryComp = ({ d }) => {
     const date = new Date(dateCreated);
     const newDate = date.toDateString()
 
+    const navigate = useNavigate()
+
+    const navigateView = () => {
+        navigate(`view-memory/${d.id}/`, { state: { memoryData: d } })
+    }
+
+    console.log(d)
+
   return (
-    <div className="memory-container">
+    <div className="memory-container" onClick={navigateView} >
         <div className="mem-wrapper">
             <div className="memory_image">
                 <img src={`https://gordenarcher.pythonanywhere.com${d.image}`} alt="memory" />

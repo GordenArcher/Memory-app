@@ -9,7 +9,7 @@ export const FetchProfilePic = () => {
     useEffect(() => {
         const getUserProfile = async () => {
             try {
-                const response = await fetch("http://localhost:8000/api/get_profile_pic/", {
+                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/get_profile_pic/", {
                     method:'GET',
                     headers : {
                         "Content-Type":"application/json",

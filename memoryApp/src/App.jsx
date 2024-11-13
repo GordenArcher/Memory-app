@@ -9,6 +9,7 @@ import { ResetPassword } from './pages/ResetPassword'
 import { EmailSent } from './pages/Email-Sent'
 import { UpLoadImage } from './pages/Upload-Image'
 import { Profile } from './pages/Profile'
+import { ViewMenory } from './pages/View-Menory'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path='sent-mail/' element={<EmailSent /> } />
         <Route path='upload/' element={<UpLoadImage /> } />
         <Route path='profile/' element={<Profile /> } />
+        <Route path='view-memory/:id/' element={<ViewMenory /> } />
       </Routes>
     </>
   )
