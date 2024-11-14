@@ -6,7 +6,6 @@ import { Loader } from '../components/Loader';
 import { toast } from 'react-toastify';
 import { Notify } from '../components/Notify';
 import '../assets/CSS/view.css'
-import { Navbar } from '../components/Navbar';
 
 export const ViewMenory = () => {
 
@@ -67,8 +66,6 @@ export const ViewMenory = () => {
   return (
     <div>
 
-        <Navbar />  
-
         <div className="back" onClick={() => navigate(-1)}>
             <button>
             <i className="bi bi-arrow-left-circle-fill"></i>
@@ -79,7 +76,14 @@ export const ViewMenory = () => {
             <div className="memory-container" >
                 <div className="mem-wrapper mm">
                     <div className="memory_image mi">
-                        <img src={`https://gordenarcher.pythonanywhere.com${memoryData.image}`} alt="memory" onClick={handleImageClick} />
+                    {memoryData.media && (
+                        memoryData.media.match(/\.(mp4|mov|avi|mkv)$/i) ? (
+                            <video controls width="300" src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} onClick={handleImageClick} />
+                        ) : (
+                            <img src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} alt="memory" width="300" onClick={handleImageClick} />
+                        )
+                    )}
+                        {/* <img src={`https://gordenarcher.pythonanywhere.com${memoryData.image}`} alt="memory" onClick={handleImageClick} /> */}
                     </div>
                     
                     <div className='hm'>

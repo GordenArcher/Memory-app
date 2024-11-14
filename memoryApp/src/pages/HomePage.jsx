@@ -1,6 +1,5 @@
 import '../assets/CSS/home.css'
 import { FetchData } from "../utils/hooks/FetchData"
-import { Navbar } from "../components/Navbar"
 import { MemoryComp } from '../components/MemoryComp'
 import { HomeLoader } from '../components/HomeLoader'
 
@@ -11,11 +10,6 @@ export const HomePage = () => {
   return (
     <>
     <div className="home">
-        <div className="home_page">
-            <nav>
-                <Navbar />
-            </nav>
-        </div>
 
         <div className="main_page">
             <main>

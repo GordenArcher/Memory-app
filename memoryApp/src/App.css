@@ -9,7 +9,7 @@
   height: 100vh;
 }
 
-.u{
+.u, .app-wrapper{
   width: 100%;
   height: 100%;
   display: flex;
@@ -22,10 +22,14 @@
 .request_wrapper, .right_wrapper, .sent_request, .request_form, .email-done,
 .password_reset, .reset_password, .upload_data, .upload_wrapper, 
 .upload_right_wrapper, .upload_form, .upload_auth, .upload_auth form, 
-.form_, .upload_input_image{
+.form_, .upload_input_image, .app-wrapper, .app_content{
   width: 100%;
   height: 100%;
 
+}
+
+.app_content{
+  padding-bottom: 80px;
 }
 
 .login, .password_request, .padd, .reset, .upload_data{

@@ -27,5 +27,5 @@ export const FetchUser = () => {
         getUserData()
     }, [token])
 
-  return {username : user}
+  return {user : user}
 }

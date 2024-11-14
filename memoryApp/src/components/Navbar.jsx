@@ -10,7 +10,7 @@ export const Navbar = () => {
 
     const [showChildProfile, setShowChildProfile] = useState(false)
     const { logOut } = useContext(AuthContext)
-    const { username } = FetchUser()
+    const { user } = FetchUser()
     const { pic } = FetchProfilePic()
 
     const navigate = useNavigate()
@@ -77,7 +77,7 @@ export const Navbar = () => {
                                         <div className="p_icon">
                                             <i className="bi bi-person"></i>
                                         </div>
-                                        <div className="name">{username.username}</div>
+                                        <div className="name">{user.username}</div>
                                     </div>
                                 </li>
                                 <li>

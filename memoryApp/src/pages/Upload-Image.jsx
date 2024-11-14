@@ -4,7 +4,6 @@ import { Loader } from '../components/Loader'
 import { toast } from 'react-toastify'
 import { Notify } from '../components/Notify'
 import uploadImage from '../assets/upload.svg'
-import { Navbar } from '../components/Navbar'
 
 
 export const UpLoadImage = () => {
@@ -14,7 +13,7 @@ export const UpLoadImage = () => {
     const [image, setImage] = useState(null)
     const [data, setData] = useState({
         description: "",
-        image: ""
+        media: ""
       })
 
       const notify = (e) => toast(e)
@@ -24,11 +23,11 @@ export const UpLoadImage = () => {
     
         const formData = new FormData();
         formData.append("description", data.description);
-        formData.append("image", data.image);
+        formData.append("media", data.media);
 
         if(!data.description.trim()) return notify("Enter a valid Description");
 
-        if(!data.image ) return notify("No Image was selected")
+        if(!data.media ) return notify("No Image was selected")
     
         try {
           setIsLoading(true)
@@ -45,7 +44,10 @@ export const UpLoadImage = () => {
             console.log(data)
             notify("Memory Uploaded")
             setIsLoading(false)
-            setData("")
+            setData({
+              description: "",
+              media: "",
+            });
           }else{
             const errorData = await response.json()
             console.log(errorData)
@@ -61,17 +63,17 @@ export const UpLoadImage = () => {
         }
       }
 
-      const handleImageChange = (e) => {
+      const handleMediaChange = (e) => {
         const file = e.target.files[0]; 
         if (file) {
           setData((currentData) => ({
             ...currentData,
-            image: file
-            }))
-
+            media: file,
+          }));
+          
           const reader = new FileReader();
           reader.onloadend = () => {
-            setImage(reader.result); 
+            setImage(reader.result);  
           };
           reader.readAsDataURL(file); 
         }
@@ -80,7 +82,6 @@ export const UpLoadImage = () => {
 
   return (
     <div className='u'>
-      <Navbar />
         <div className="upload_data">
             <div className="upload_wrapper">
               <div className="upload_left">
@@ -121,15 +122,17 @@ export const UpLoadImage = () => {
                                 <div className="upload_input_image">
                                   <input 
                                     type="file" 
-                                    name='image' 
-                                    accept="image/*"
-                                    onChange={handleImageChange} />
+                                    name='media' 
+                                    accept="image/*, video/*"
+                                    onChange={handleMediaChange} />
 
-                                  {
-
-                                  image && 
-                                    <img src={image} alt="image selected" style={{ maxWidth: "250px", marginTop: "20px" }} />
-                                  }
+                                    {image && data.media && (
+                                      data.media.type.startsWith('video/') ? (
+                                        <video controls src={image} width="300" />
+                                      ) : (
+                                        <img src={image} alt="preview" width="300" />
+                                      )
+                                    )}
                                 </div>
 
                                   <div className="upload_button">
