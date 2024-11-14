@@ -1,0 +1,411 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.auth, .rp{
+  width: 100%;
+  height: 100vh;
+}
+
+.u, .app-wrapper{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login, .login_wrapper, .login_left, .message, .login_right, .auth_wrapper,
+.login_auth, .left_image, .form_, .submit, .v, .left_wrap, .password_request,
+.request_wrapper, .right_wrapper, .sent_request, .request_form, .email-done,
+.password_reset, .reset_password, .upload_data, .upload_wrapper, 
+.upload_right_wrapper, .upload_form, .upload_auth, .upload_auth form, 
+.form_, .upload_input_image, .app-wrapper, .app_content{
+  width: 100%;
+  height: 100%;
+
+}
+
+.app_content{
+  padding-bottom: 80px;
+}
+
+.login, .password_request, .padd, .reset, .upload_data{
+  padding: 40px;
+}
+
+.line{
+  background: hsl(241, 97%, 24%);
+  width: 4px;
+  height: 100%;
+}
+
+.upload_left, .upload_right{
+  width: 100%;
+}
+
+.login_wrapper{
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.auth_wrapper, .form_, .right_wrapper, .email-done .padd, .reset{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  position: relative;
+}
+
+.login_left{
+  position: relative;
+}
+
+.left_wrap, .request_form, .form_, .upload_input, .upload_left_wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.left_image img, .upload_left_image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.left_image img{
+  width: 80%;
+}
+
+.reset_left_image img{
+  width: 100%;
+  height: 100%;
+}
+
+.message{
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: hsl(0, 0%, 0%);
+  /* padding-top: 70px; */
+}
+
+.auth_head{
+  font-size: 1.5rem;
+  color: #00000065;
+}
+
+.login_auth{
+  margin-top: 60px;
+}
+
+.login_right{
+  border-radius: 6px;
+}
+
+.form_{
+  gap: 50px;
+}
+
+.viewpassword{
+  position: relative;
+  gap: 10px;
+}
+
+.slide label{
+  width: 58px;
+  height: 28px;
+  background: hsla(0, 0%, 85%, 0.32);
+  border: none;
+  border-radius: 30px;
+  transition: all .4s ease;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+
+.slide label::after{
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: hsl(241, 97%, 24%);
+  transition: all .4s ease;
+}
+
+.slide input:checked ~ label::after{
+  left: 32px;
+  background: hsl(0, 0%, 100%);
+}
+
+.slide input:checked ~ label{
+  background: hsl(241, 97%, 24%);
+}
+
+.form_input, .request_form_input{
+  position: relative;
+}
+
+.form_input label, .request_form_input label, .desck label{
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: 800;
+}
+
+.form_input input, .request_form_input input, .desck input{
+  width: 100%;
+  height: 55px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  padding: 10px 60px 10px 10px;
+  color: hsl(241, 97%, 24%);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 10px;
+  background: transparent;
+  transition: all .3s ease;
+}
+
+.form_input input:focus, .request_form_input input:focus, .desck input:focus{
+  border: 1px solid hsl(241, 97%, 24%);
+}
+
+.form_input button, .request_form_input button, .desck button{
+  position: absolute;
+  right: 10px;
+  margin-top: 20px;
+  background: transparent;
+  color: hsl(241, 97%, 24%);
+}
+
+.submit button, .sent_request button, .upload_button button{
+  width: 100%;
+  height: 50px;
+  font-size: 1.3rem;
+  background: hsl(241, 97%, 24%);
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  border: 3px dotted #FFF;
+  border-style: solid solid dotted dotted;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px dotted hsl(0, 0%, 100%);
+  border-style: solid solid dotted;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  animation: rotationBack 1s linear infinite;
+  transform-origin: center center;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+} 
+
+.v, .view_password, .upload_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.request_wrapper{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.right_mess{
+  font-size: .8rem;
+}
+
+.email-done .padd{
+  justify-content: center;
+  align-items: center;
+}
+
+.upload_right{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload_form{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  
+}
+
+.spin {
+  width: 58px;
+  height: 58px;
+  margin: auto;
+  position: relative;
+  z-index: 99;
+}
+.spin:before {
+  content: '';
+  width: 58px;
+  height: 15px;
+  background: #000;
+  opacity: 0.25;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow 0.5s linear infinite;
+  }
+  .spin:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: hsl(241, 97%, 24%);
+  animation: bxSpin 0.5s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+  }
+@keyframes bxSpin {
+  17% {
+    border-bottom-right-radius: 3px;
+  }
+  25% {
+    transform: translateY(9px) rotate(22.5deg);
+  }
+  50% {
+    transform: translateY(18px) scale(1, .9) rotate(45deg);
+    border-bottom-right-radius: 40px;
+  }
+  75% {
+    transform: translateY(9px) rotate(67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes shadow {
+  0%, 100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1);
+  }
+}
+
+
+@media screen and (max-width:786px) {
+
+  .login{
+    padding: 20px;
+  }
+
+  .login_wrapper, .upload_wrapper, .request_wrapper{
+    flex-direction: column;
+  }
+
+  /* .left_image{
+    display: none;
+  } */
+
+  .left_image{
+    text-align: center;
+  }
+
+  .left_image img{
+    width: 30%;
+  }
+
+  .line{
+    width: 100%;
+    height: 3px;
+  }
+
+  .message{
+    font-size: 1rem;
+  }
+
+  .right_mess{
+    font-size: .7rem;
+  }
+
+  .auth_wrapper, .form_{
+    gap: 20px;
+  }
+
+  .auth_head{
+    font-size: 1.1rem;
+  }
+
+  .login_auth{
+    margin-top: 20px;
+  }
+  
+  .login_right{
+    padding: 10px;
+  }
+
+  .fpass, .s-text{
+    font-size: .7rem;
+  }
+
+  .slide label{
+    width: 38px;
+    height: 22px;
+  }
+
+  .slide label::after{
+    width: 18px;
+    height: 18px;
+  }
+
+  .slide input:checked ~ label::after{
+    left: 18px;
+    background: hsl(0, 0%, 100%);
+  }
+
+
+
+}
