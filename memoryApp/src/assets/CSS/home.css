@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+.home, .home_page, nav, .nav, .navbar, .links, .profile_image, .childern_,
+.main_page, .main-memory, .main_grid, main, .memory-container, .mem-wrapper,
+.memory_image, .memo-about, .tabs, .page_tabs, .tab{
+    width: 100%;
+    height: 100%;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.nav{
+    position: sticky;
+    top: 0;
+    background: hsl(241, 97%, 24%);
+    color: hsl(0, 0%, 100%);
+    transition: all .4s ease;
+}
+
+.comedown{
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+    transition: all .4s ease;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 15px;
+}
+
+.links ul, .childern_ ul, .tab ul{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.set-profile-children{
+    z-index: 1;
+}
+
+.childern_{
+    padding: 20px;
+}
+
+.childern_ li, .date{
+    width: 100%;
+}
+
+.childern_ ul{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+}
+
+.back{
+    position: relative;
+    padding: 20px;
+}
+
+.back button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.back button i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: hsl(241, 97%, 24%);
+    transition: all .3s ease;
+}
+
+.back button:hover{
+    background: hsl(241, 97%, 24%);
+}
+
+.back button:hover i{
+    color: hsl(0, 0%, 100%);
+}
+
+.links ul a, .childern_ ul a, .s, .tab ul a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    color: hsl(0, 0%, 100%);
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.links ul a:hover, .childern_ ul a:hover, .s:hover{
+    background: hsla(0, 0%, 100%, 0.108);
+}
+
+.profile, .profile_image, .set-profile{
+    position: relative;
+}
+
+.s{
+    cursor: pointer;
+}
+
+.profile_image{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.profile_image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+    position: relative;
+    cursor: pointer;
+}
+
+.setNew{
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+}
+
+.set-profile-children{
+    width: 200px;
+    position: absolute;
+    right: 0;
+    background: hsl(241, 97%, 24%);
+    box-shadow: 0 0 4px 1px hsl(0, 0%, 100%);
+}
+
+.main_page, .mem-wrapper{
+    padding: 20px;
+}
+
+.main_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.mem-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.memory_image img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.memory_image video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.memory_image video:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.memory_image video:focus {
+    outline: none;
+}
+
+
+.memo-about h3{
+    font-weight: 900;
+}
+
+.date{
+    display: flex;
+    gap: 10px;
+    font-size: .8rem;
+    color: hsla(241, 97%, 24%, 0.452);
+}
+
+.logo-memory {
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem; 
+    font-weight: bold; 
+    color: #2c3e50; 
+    text-transform: capitalize; 
+    text-align: center;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 1px; 
+    padding: 20px; 
+    border-radius: 50px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.logo-memory:hover {
+    transform: scale(1.05); 
+    background-color: hsla(0, 0%, 100%, 0.108); 
+}
+
+.logo-icon {
+    font-size: 3rem; 
+    animation: bounce 0.6s infinite alternate;
+}
+
+.show, .tabs{
+    display: none;
+}
+
+.tabs{
+    position: fixed;
+    bottom: 0;
+    background: hsl(241, 97%, 24%);
+    height: 80px;
+}
+
+.tab ul{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.tab ul a button{
+    background: transparent;
+    font-size: 2rem;
+    color: hsl(0, 0%, 100%);
+    padding: 12px;
+}
+
+.tab ul a button:active{
+    background: hsla(0, 0%, 100%, 0.298);
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@media screen and (max-width:786px) {
+    .nav-links{
+        display: none;
+    }
+
+    .logo-memory {
+        font-size: 1.2rem; 
+    }
+
+    .logo-icon {
+        font-size: 2rem; 
+    }
+
+    .show, .tabs{
+        display: initial;
+    }
+
+    .main_grid{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+
+    .set-profile-children{
+        display: none;
+    }
+}
