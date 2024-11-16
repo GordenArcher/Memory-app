@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .home, .home_page, nav, .nav, .navbar, .links, .profile_image, .childern_,
 .main_page, .main-memory, .main_grid, main, .memory-container, .mem-wrapper,
-.memory_image, .memo-about, .tabs, .page_tabs, .tab{
+.memory_image, .memo-about, .tabs, .page_tabs, .tab, .controls button i{
     width: 100%;
     height: 100%;
 }
@@ -159,30 +159,22 @@
     gap: 20px;
 }
 
-.memory_image img{
+.memory_image{
+    position: relative;
+}
+
+.memory_image img, .memory_image video {
     width: 100%;
     height: 500px;
     object-fit: cover;
     border-radius: 4px;
-}
-
-.memory_image video {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.memory_image video:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: .5s ease;
 }
 
 .memory_image video:focus {
     outline: none;
 }
-
 
 .memo-about h3{
     font-weight: 900;
@@ -234,6 +226,7 @@
     bottom: 0;
     background: hsl(241, 97%, 24%);
     height: 80px;
+    z-index: 99;
 }
 
 .tab ul{
@@ -253,6 +246,31 @@
 .tab ul a button:active{
     background: hsla(0, 0%, 100%, 0.298);
 }
+
+.memory_image .controls{
+    position: absolute;
+    right: 10%;
+    bottom: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: hsla(241, 97%, 24%, 0.774);
+}
+
+.controls button i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
 
 @keyframes bounce {
     0% {

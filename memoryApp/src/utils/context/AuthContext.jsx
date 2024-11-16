@@ -1,9 +1,17 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useRef, useState } from "react"
 
 export const AuthContext = createContext()
 
 export const AuthContextprovider = ({ children }) => {
     const [token, setToken] = useState(null)
+    const [controls, setControls] = useState({})
+    const videoRefs = useRef({})
+
+    useEffect(() => {
+        return () => {
+            videoRefs.current = {};
+        };
+    }, []);
 
     useEffect(() => {
         const savedToken = localStorage.getItem("token")
@@ -22,9 +30,26 @@ export const AuthContextprovider = ({ children }) => {
         setToken(usertoken)
     }
 
+    const play = (id) => {
+        Object.keys(videoRefs.current).forEach((key) => {
+            if (key !== id && videoRefs.current[key]) {
+                videoRefs.current[key].pause();
+                setControls((prev) => ({ ...prev, [id]: false })); 
+            }
+        });
+    
+        videoRefs.current[id]?.play();
+        setControls((prev) => ({ ...prev, [id]: true })); 
+    };
+
+    const pause = (id) => {
+        videoRefs.current[id]?.pause();
+        setControls((prev) => ({ ...prev, [id]: false }));
+    };
+
 
   return (
-    <AuthContext.Provider value={{token, saveToken, setToken, logOut}}>
+    <AuthContext.Provider value={{token, saveToken, setToken, logOut, play, pause, controls, videoRefs}}>
         {children}
     </AuthContext.Provider>
   )

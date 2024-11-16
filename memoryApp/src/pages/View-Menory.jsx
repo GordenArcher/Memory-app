@@ -78,7 +78,7 @@ export const ViewMenory = () => {
                     <div className="memory_image mi">
                     {memoryData.media && (
                         memoryData.media.match(/\.(mp4|mov|avi|mkv)$/i) ? (
-                            <video controls width="300" src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} onClick={handleImageClick} />
+                            <video width="300" src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} onClick={handleImageClick} />
                         ) : (
                             <img src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} alt="memory" width="300" onClick={handleImageClick} />
                         )

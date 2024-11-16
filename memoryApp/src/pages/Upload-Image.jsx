@@ -4,6 +4,7 @@ import { Loader } from '../components/Loader'
 import { toast } from 'react-toastify'
 import { Notify } from '../components/Notify'
 import uploadImage from '../assets/upload.svg'
+import { useNavigate } from 'react-router-dom'
 
 
 export const UpLoadImage = () => {
@@ -15,7 +16,7 @@ export const UpLoadImage = () => {
         description: "",
         media: ""
       })
-
+      const navigate = useNavigate()
       const notify = (e) => toast(e)
     
       const sendImage = async (e) => {
@@ -48,6 +49,9 @@ export const UpLoadImage = () => {
               description: "",
               media: "",
             });
+            setTimeout(() => {
+              navigate("/")
+            }, 2000)
           }else{
             const errorData = await response.json()
             console.log(errorData)
