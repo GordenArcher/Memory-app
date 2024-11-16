@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^1.7.7",
+    "capacitor": "^0.5.6",
     "prototype": "^0.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

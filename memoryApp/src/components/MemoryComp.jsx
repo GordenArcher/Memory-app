@@ -7,7 +7,7 @@ export const MemoryComp = ({ d }) => {
     const dateCreated = d.date_created;
     const date = new Date(dateCreated);
     const newDate = date.toDateString();
-    const { play, pause, controls, videoRefs, setControls } = useContext(AuthContext)
+    const { play, pause, controls, videoRefs, endVideo } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -15,23 +15,25 @@ export const MemoryComp = ({ d }) => {
         navigate(`view-memory/${d.id}/`, { state: { memoryData: d } });
     };
 
-
     return (
         <div className="memory-container" aria-label="View memory details">
             <div className="mem-wrapper">
-                <div className="memory_image" >
+                <div className="memory_image">
                 {d.media && (
                         d.media.match(/\.(mp4|mov|avi|mkv)$/i) ? (
                                 <>
-                                    <video 
-                                    controls={false} 
-                                    ref={(el) => (videoRefs.current[d.id] = el)} 
-                                    src={`https://gordenarcher.pythonanywhere.com/${d.media}`} 
-                                    onEnded={() => setControls((prev) => ({ ...prev, [d.id]: false }))}
-                                    />
+                                    <div onClick={navigateView}>
+                                        <video 
+                                        
+                                        controls={false} 
+                                        ref={(el) => (videoRefs.current[d.id] = el)} 
+                                        src={`https://gordenarcher.pythonanywhere.com/${d.media}`} 
+                                        onEnded={() => endVideo(d.id)}
+                                        />
+                                    </div>
 
                                     <div className="controls">
-                                    <button 
+                                        <button 
                                         onClick={() => (controls[d.id] ? pause(d.id) : play(d.id))} 
                                         aria-label={controls[d.id] ? "Pause video" : "Play video"}
                                         >
@@ -40,7 +42,7 @@ export const MemoryComp = ({ d }) => {
                                     </div>
                                 </>
                         ) : (
-                            <img src={`https://gordenarcher.pythonanywhere.com/${d.media}`} alt="memory" width="300" />
+                            <img src={`https://gordenarcher.pythonanywhere.com/${d.media}`} alt="memory" width="300" onClick={navigateView} />
                         )
                     )}
                 </div>

@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .home, .home_page, nav, .nav, .navbar, .links, .profile_image, .childern_,
 .main_page, .main-memory, .main_grid, main, .memory-container, .mem-wrapper,
-.memory_image, .memo-about, .tabs, .page_tabs, .tab, .controls button i{
+.memory_image, .memo-about, .tabs, .page_tabs, .tab, .controls button i, .offline{
     width: 100%;
     height: 100%;
 }
 
-.home{
+.home, .offline{
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -45,7 +45,8 @@
 }
 
 .set-profile-children{
-    z-index: 1;
+    z-index: 9;
+    position: relative;
 }
 
 .childern_{
@@ -170,6 +171,7 @@
     border-radius: 4px;
     position: relative;
     transition: .5s ease;
+    z-index: -1;
 }
 
 .memory_image video:focus {
@@ -279,6 +281,12 @@
     100% {
         transform: translateY(-10px);
     }
+}
+
+.offline{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width:786px) {

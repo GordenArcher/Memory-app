@@ -34,7 +34,7 @@ export const AuthContextprovider = ({ children }) => {
         Object.keys(videoRefs.current).forEach((key) => {
             if (key !== id && videoRefs.current[key]) {
                 videoRefs.current[key].pause();
-                setControls((prev) => ({ ...prev, [id]: false })); 
+                setControls((prev) => ({ ...prev, [key]: false }));
             }
         });
     
@@ -47,9 +47,13 @@ export const AuthContextprovider = ({ children }) => {
         setControls((prev) => ({ ...prev, [id]: false }));
     };
 
+    const endVideo = (id) => {
+        setControls((prev) => ({ ...prev, [id]: false }));
+    }
+
 
   return (
-    <AuthContext.Provider value={{token, saveToken, setToken, logOut, play, pause, controls, videoRefs}}>
+    <AuthContext.Provider value={{token, saveToken, setToken, logOut, play, pause, controls, videoRefs, endVideo}}>
         {children}
     </AuthContext.Provider>
   )

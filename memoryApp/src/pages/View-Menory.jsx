@@ -25,7 +25,7 @@ export const ViewMenory = () => {
     const date = new Date(dateCreated);
     const newDate = date.toDateString()
     const navigate = useNavigate()
-    const { token } = useContext(AuthContext)
+    const { token, play, pause, controls, videoRefs, endVideo } = useContext(AuthContext)
 
     const deleteMemory = async (e) => {
         e.preventDefault()
@@ -68,7 +68,7 @@ export const ViewMenory = () => {
 
         <div className="back" onClick={() => navigate(-1)}>
             <button>
-            <i className="bi bi-arrow-left-circle-fill"></i>
+                <i className="bi bi-arrow-left-circle-fill"></i>
             </button>
         </div>
 
@@ -78,7 +78,22 @@ export const ViewMenory = () => {
                     <div className="memory_image mi">
                     {memoryData.media && (
                         memoryData.media.match(/\.(mp4|mov|avi|mkv)$/i) ? (
-                            <video width="300" src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} onClick={handleImageClick} />
+                            <>
+                            <video 
+                            ref={(el) => (videoRefs.current[memoryData.id] = el)} 
+                            src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} 
+                            onEnded={() => endVideo(id)}
+                            />
+
+                            <div className="controls">
+                                <button 
+                                onClick={() => (controls[memoryData.id] ? pause(memoryData.id) : play(memoryData.id))} 
+                                aria-label={controls[memoryData.id] ? "Pause video" : "Play video"}
+                                >
+                                    <i className={`bi ${controls[memoryData.id] ? "bi-pause" : "bi-play"}`}></i>
+                                </button>
+                            </div>
+                        </>
                         ) : (
                             <img src={`https://gordenarcher.pythonanywhere.com/${memoryData.media}`} alt="memory" width="300" onClick={handleImageClick} />
                         )
@@ -114,7 +129,7 @@ export const ViewMenory = () => {
 
             {isFullscreen && (
                 <div className="fullscreen-overlay" onClick={() => setIsFullscreen(false)}>
-                    <img src={`https://gordenarcher.pythonanywhere.com${memoryData.image}`} alt="Image" className="fullscreen-image" />
+                    <img src={`https://gordenarcher.pythonanywhere.com${memoryData.media}`} alt="Image" className="fullscreen-image" />
                 </div>
             )}
 

@@ -12,6 +12,7 @@ import { Profile } from './pages/Profile'
 import { ViewMenory } from './pages/View-Menory'
 import { Navbar } from './components/Navbar'
 import { Tab } from './components/Tab'
+import { Register } from './pages/auth/Register'
 
 function App() {
 
@@ -48,7 +49,12 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       )}
       
-      <Route path="/" element={<Login />} />
+      {!token && 
+      <>
+        <Route path="/" element={<Login />} />
+        <Route path="/auth:register" element={<Register />} />
+      </>
+      }
       <Route path="request-password/" element={<PasswordReset />} />
       <Route path="reset-password/:uidb64/:token" element={<ResetPassword />} />
       <Route path="sent-mail/" element={<EmailSent />} />
