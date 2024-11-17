@@ -62,7 +62,7 @@ export const Navbar = () => {
             <div className="profile">
                 <div className="set-profile">
                     <div className="profile_image" onClick={() => setShowChildProfile((currentState) => !currentState)}>
-                        <img src={pic == null ? Avatar : `https://gordenarcher.pythonanywhere.com/${pic.profile_image}` } alt="" />
+                        <img src={!pic.profile_image ? Avatar : `https://gordenarcher.pythonanywhere.com/${pic.profile_image}` } alt="" />
                     </div>
                 </div>
                 

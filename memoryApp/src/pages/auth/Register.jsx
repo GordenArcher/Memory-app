@@ -6,30 +6,35 @@ import {  toast } from 'react-toastify';
 import { AuthContext } from '../../utils/context/AuthContext';
 import { Notify } from '../../components/Notify';
 
-export const Login = () => {
+export const Register = () => {
 
     const { saveToken } = useContext(AuthContext)
-    const [viewPassword, setViewPassword] = useState(false)
     const [loader, setLoader] = useState(false)
     const [data, setData] = useState({
         username: "",
-        password: ""
+        email: "",
+        password: "",
+        password2: ""
       })
       
       const notify = (e) => toast(e)
     
-      const loginUser = async (e) => {
+      const registerUser = async (e) => {
         e.preventDefault()
 
-        if(!data.username || !data.password){
+        if(!data.username || !data.email || !data.password){
             return notify("All fields are required")
+        }
+
+        if(data.password !== data.password2){
+            return notify("Password does not")
         }
     
         try {
 
             setLoader(true)
     
-          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/login/", {
+          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/register/", {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -65,24 +70,26 @@ export const Login = () => {
 
       document.addEventListener('keypress', (e) => {
         if (e.key === "Enter"){
-            loginUser()
+            registerUser()
         }
     })
 
   return (
 
-    <div className='auth'>
+    <div className='auth reg'>
         <div className="login">
             <div className="login_wrapper">
                 <div className="login_left">
                     <div className="left_wrap">
+
                         <div className="message">
-                            <span>Welcome, love! 💖 <br /> I&apos;m so glad to have you here. Log in and let&apos;s keep creating memories together. Every moment here is just for us—enjoy it!</span>
+                        <span>Welcome, love! 💖 <br /> I&apos;m thrilled you&apos;re joining us. Let&apos;s start creating beautiful memories together. Sign up now, and let this be the beginning of something special just for us!</span>
                         </div>
 
                         <div className="left_image">
                             <img src={LoginImage} alt="login image" />
                         </div>
+
                         
                     </div>
                 </div>
@@ -90,11 +97,11 @@ export const Login = () => {
                 <div className="login_right">
                     <div className="auth_wrapper">
                         <div className="auth_head">
-                            <h4>Login Baby Girl!</h4>
+                            <h4>Register Baby Girl!</h4>
                         </div>
 
                         <div className="login_auth">
-                            <form className="authent" onSubmit={loginUser}>
+                            <form className="authent" onSubmit={registerUser}>
                                 <div className="form_">
                                    <div className="form_input">
                                         <label htmlFor="username">Username</label>
@@ -116,9 +123,26 @@ export const Login = () => {
                                    </div>
 
                                    <div className="form_input">
+                                        <label htmlFor="password">Email</label>
+                                        <input 
+                                        type='email'
+                                        name='email' 
+                                        id='email'
+                                        onChange={(e) => {
+                                            setData((currentData) => ({
+                                                ...currentData,
+                                                email: e.target.value
+                                                }))
+                                        }} />
+                                        <button>
+                                        <i className="bi bi-envelope-fill"></i>
+                                        </button>
+                                   </div>
+
+                                   <div className="form_input">
                                         <label htmlFor="password">Password</label>
                                         <input 
-                                        type={viewPassword ? 'text' : 'password'} 
+                                        type={'password'} 
                                         name='password' 
                                         id='password'
                                         onChange={(e) => {
@@ -132,39 +156,36 @@ export const Login = () => {
                                         </button>
                                    </div>
 
-                                   <div className='v'>
-                                        <div className="view_password">
-                                            <div className="slide">
-                                                <input type="checkbox" name="viewPassword" id="view" hidden />
-                                                <label onClick={() => {
-                                                    setViewPassword(!viewPassword)
-                                                }} htmlFor="view"></label>
-                                            </div>
-
-                                            <div className="s-text">
-                                                <p>Show Password</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="fpass">
-                                            <span>You forgot your password? <Link to='/request-password'>Reset </Link> </span>
-                                        </div>
+                                   <div className="form_input">
+                                        <label htmlFor="password">Confirm Password</label>
+                                        <input 
+                                        type={'password'} 
+                                        name='password2' 
+                                        id='password2'
+                                        onChange={(e) => {
+                                            setData((currentData) => ({
+                                                ...currentData,
+                                                password2: e.target.value
+                                                }))
+                                        }} />
+                                        <button>
+                                        <i className="bi bi-key-fill"></i>
+                                        </button>
                                    </div>
 
                                     <div className="submit">
-                                        <button>{loader ? <Loader /> : "Login"}</button>
+                                        <button>{loader ? <Loader /> : "Register"}</button>
                                     </div>
-                                </div>
-
-                                <div style={{marginTop:'40px'}}>
-                                    <span>Don&apos;t have an account ? <Link to={"/auth:register"}>register</Link> </span>
                                 </div>
                             </form>
                         </div>
 
+                        <div>
+                            <span>
+                            Already have an account ? <Link to={"/"}>Login</Link>  </span>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
 

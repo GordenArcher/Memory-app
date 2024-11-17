@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-// import ProfileImage from '../assets/sett.svg'
+import ProfileImage from '../assets/avatar-4.png'
 import { AuthContext } from '../utils/context/AuthContext'
 import { FetchProfilePic } from '../utils/hooks/GetUserProfile'
 import { Notify } from '../components/Notify'
@@ -87,7 +87,15 @@ export const Profile = () => {
 
                             <div className="profile_img">
                                 <div className="profile-pic">
-                                    <img src={`https://gordenarcher.pythonanywhere.com/${pic.profile_image}`} alt="image" />
+                                    {pic.profile_image ? 
+                                    (<img src={`https://gordenarcher.pythonanywhere.com/${pic.profile_image}`} alt="image" />)
+                                    :
+                                    (
+                                    <div className="image_wrap">
+                                        <img src={ProfileImage} alt="image" />
+                                    </div>
+                                    )
+                                    }
                                 </div>
                                         
                                 <div className="upload_pro">
