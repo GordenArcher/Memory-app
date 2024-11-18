@@ -7,7 +7,7 @@ export const MemoryComp = ({ d }) => {
     const dateCreated = d.date_created;
     const date = new Date(dateCreated);
     const newDate = date.toDateString();
-    const { play, pause, controls, videoRefs, endVideo } = useContext(AuthContext)
+    const { play, pause, controls, videoRefs, endVideo, theme } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -15,8 +15,13 @@ export const MemoryComp = ({ d }) => {
         navigate(`view-memory/${d.id}/`, { state: { memoryData: d } });
     };
 
+    const dark = {
+        background: "black",
+        color : "white"
+    }
+
     return (
-        <div className="memory-container" aria-label="View memory details">
+        <div className="memory-container" aria-label="View memory details" style={theme === "light" ? dark : null}>
             <div className="mem-wrapper">
                 <div className="memory_image">
                 {d.media && (
@@ -42,7 +47,9 @@ export const MemoryComp = ({ d }) => {
                                     </div>
                                 </>
                         ) : (
-                            <img src={`https://gordenarcher.pythonanywhere.com/${d.media}`} alt="memory" width="300" onClick={navigateView} />
+                            <div onClick={navigateView}>
+                                <img src={`https://gordenarcher.pythonanywhere.com/${d.media}`} alt="memory" width="300" />
+                            </div>
                         )
                     )}
                 </div>
@@ -56,7 +63,7 @@ export const MemoryComp = ({ d }) => {
                 )}
 
                 <div className="memory-date">
-                    <div className="date">
+                    <div className="date" style={theme === "light" ? dark : null}>
                         <span>Uploaded on </span>
                         <p>{newDate}</p>
                     </div>

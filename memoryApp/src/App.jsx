@@ -16,7 +16,7 @@ import { Register } from './pages/auth/Register'
 
 function App() {
 
-  const { token } = useContext(AuthContext)
+  const { token, theme } = useContext(AuthContext)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,7 +62,7 @@ function App() {
   ), [token]);
 
   return (
-    <div className="app-wrapper">
+    <div className={theme === 'light' ? `app-wrapper dark` : `app-wrapper light`}>
       {token && 
         <div className="headddd" id='nav'>
           <Navbar />

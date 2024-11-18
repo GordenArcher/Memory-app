@@ -25,7 +25,7 @@ export const ViewMenory = () => {
     const date = new Date(dateCreated);
     const newDate = date.toDateString()
     const navigate = useNavigate()
-    const { token, play, pause, controls, videoRefs, endVideo } = useContext(AuthContext)
+    const { token, play, pause, controls, videoRefs, endVideo, theme } = useContext(AuthContext)
 
     const deleteMemory = async (e) => {
         e.preventDefault()
@@ -63,8 +63,13 @@ export const ViewMenory = () => {
         }
     }
 
+    const dark = {
+        background: "black",
+        color : "white"
+    }
+
   return (
-    <div>
+    <div style={theme === "light" ? dark : null}>
 
         <div className="back" onClick={() => navigate(-1)}>
             <button>
@@ -104,7 +109,7 @@ export const ViewMenory = () => {
                     <div className='hm'>
                         {memoryData.description && 
                             <div className="memory-descriptio">
-                                <div className="memo-about">
+                                <div className="memo-about" style={theme === "light" ? dark : null}>
                                     <h3>{memoryData.description}</h3>
                                     
                                 </div>
@@ -112,7 +117,7 @@ export const ViewMenory = () => {
                         }
 
                         <div className="memory-date">
-                            <div className="date">
+                            <div className="date" style={theme === "light" ? dark : null}>
                                 <span>Uploaded on </span>
                                 <p>{newDate}</p>
                             </div>

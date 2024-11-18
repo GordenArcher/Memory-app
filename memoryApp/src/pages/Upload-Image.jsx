@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const UpLoadImage = () => {
 
-    const { token } = useContext(AuthContext)
+    const { token, theme } = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(false)
     const [image, setImage] = useState(null)
     const [data, setData] = useState({
@@ -83,14 +83,24 @@ export const UpLoadImage = () => {
         }
       };
 
+      const dark = {
+        background: "black",
+        color : "white"
+    }
+
+    const b = {
+      border :"1px solid #ccc ",
+      color :"#fff"
+    }
+
 
   return (
-    <div className='u'>
+    <div className='u' style={theme === "light" ? dark : null}>
         <div className="upload_data">
             <div className="upload_wrapper">
               <div className="upload_left">
                 <div className="upload_left_wrap">
-                  <div className="message">
+                  <div className="message" style={theme === "light" ? dark : null}>
                     <span>Welcome, my love! 💖<br /> Upload your favorite memory and make my heart smile! 😘</span>
                   </div>
 
@@ -109,8 +119,9 @@ export const UpLoadImage = () => {
                           <form onSubmit={sendImage}>
                               <div className="upload_form">
                                 <div className="upload_input desck">
-                                  <label htmlFor="description">Description</label>
+                                  <label htmlFor="description" style={theme === "light" ? dark : null}>Description</label>
                                   <input 
+                                  style={theme === "light" ? b : null}
                                   type="text" 
                                   name='description' 
                                   value={data.description} 

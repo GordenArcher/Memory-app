@@ -1,0 +1,12 @@
+{
+  "appId": "com.Recuerdo.app",
+  "appName": "Recuerdo",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "android": {
+    "icon": "public/memory.jpg"
+  },
+  "ios": {
+    "icon": "public/memory.jpg"
+  }
+}

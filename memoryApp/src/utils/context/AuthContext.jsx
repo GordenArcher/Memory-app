@@ -5,12 +5,18 @@ export const AuthContext = createContext()
 export const AuthContextprovider = ({ children }) => {
     const [token, setToken] = useState(null)
     const [controls, setControls] = useState({})
+    const [theme, setTheme] = useState("light")
     const videoRefs = useRef({})
 
     useEffect(() => {
         return () => {
             videoRefs.current = {};
         };
+    }, []);
+
+    useEffect(() => {
+        const getTheme = localStorage.getItem("theme") || "light"
+        setTheme(getTheme)
     }, []);
 
     useEffect(() => {
@@ -51,9 +57,14 @@ export const AuthContextprovider = ({ children }) => {
         setControls((prev) => ({ ...prev, [id]: false }));
     }
 
+    const setPageTheme = () => {
+        const currentTheme = theme === "light" ? "dark" : "light"
+        localStorage.setItem("theme", currentTheme)
+        setTheme(currentTheme)
+    }
 
   return (
-    <AuthContext.Provider value={{token, saveToken, setToken, logOut, play, pause, controls, videoRefs, endVideo}}>
+    <AuthContext.Provider value={{token, saveToken, setToken, logOut, play, pause, controls, videoRefs, endVideo, theme, setPageTheme}}>
         {children}
     </AuthContext.Provider>
   )

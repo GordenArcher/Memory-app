@@ -6,14 +6,16 @@ import { Notify } from '../components/Notify'
 import { toast } from 'react-toastify'
 import '../assets/CSS/profile.css'
 import { FetchUser } from '../utils/hooks/FetchUser'
+import { useNavigate } from 'react-router-dom'
 
 export const Profile = () => {
 
     const [profilePic, setProfilePic] = useState(null)
-    const { token, logOut } = useContext(AuthContext)
+    const { token, logOut, theme, setPageTheme } = useContext(AuthContext)
     const { pic } = FetchProfilePic()
     const notify = (e) => toast(e)
     const { user } = FetchUser()
+    const navigate = useNavigate()
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0]; 
@@ -28,6 +30,11 @@ export const Profile = () => {
         }
         
     };
+
+    const logOutUser = () => {
+        logOut()
+        navigate("/")
+    }
 
     useEffect(() => {
 
@@ -64,8 +71,17 @@ export const Profile = () => {
         setProfile()
     }, [token, profilePic])
 
+    const dark = {
+        background: "black",
+        color : "white"
+    }
+
+    const b = {
+        border :"1px solid #ccc "
+    }
+
   return (
-    <div className="profile_">
+    <div className="profile_" style={theme === "light" ? dark : null}>
         <div className="profile-container">
             <div className="profile_wrap">
                 {/* <div className="profile_left">
@@ -76,7 +92,7 @@ export const Profile = () => {
                     </div>
                 </div> */}
 
-                <div className="profile_right">
+                <div className="profile_right" style={theme === "light" ? b : null}>
                     <div className="profile_main">
                         <div className="profile_right_wrapper">
                             <div className="profile_head">
@@ -121,7 +137,7 @@ export const Profile = () => {
                                     <ul>
                                         <li>
                                             <div className="col">
-                                                <div className="col">
+                                                <div className="col"  style={theme === "light" ? dark : null}>
                                                     <div className="icon">
                                                         <i className="bi bi-person-fill"></i>
                                                     </div>
@@ -134,12 +150,14 @@ export const Profile = () => {
 
                                         <li>
                                             <div className="col">
-                                                <div className="col">
+                                                <div className="col" style={theme === "light" ? dark : null}>
                                                     <div className="icon">
                                                         <i className="bi bi-envelope-fill"></i>
                                                     </div>
                                                     <div className="name">
-                                                        <p>{user.email ? user.email : "-"}</p>
+                                                        {
+                                                            <p>{user.email ? user.email : "-"}</p>
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
@@ -147,18 +165,31 @@ export const Profile = () => {
 
                                         <li>
                                             <div className="col">
-                                                <div className="col">
-                                                    <div className="icon">
-                                                        <i className="bi bi-moon-stars"></i>
+                                                <div className="col" style={theme === "light" ? dark : null}>
+                                                    <div className="name tt">
+                                                        {
+                                                            theme === "light" ?
+                                                            <>
+                                                                <i className={`bi bi-sun-fill`}></i>
+                                                                <p>Light Mode</p>
+                                                            </>
+                                                            :
+                                                            <>
+                                                                <i className={`bi bi-moon-stars`}></i>
+                                                                <p>Dark Mode</p>
+                                                            </>
+                                                        }
                                                     </div>
-                                                    <div className="name">
-                                                        <p>Dark Mode</p>
-                                                    </div>
+
+                                                    <div className="slide">
+                                                    <input type="checkbox" name="viewPassword" id="view" hidden />
+                                                    <label htmlFor="view" onClick={() => setPageTheme(current => !current)}></label>
+                                                </div>
                                                 </div>
                                             </div>
                                         </li>
 
-                                        <li style={{color:'red'}} className='out' onClick={logOut}>
+                                        <li style={{color:'red'}} className='out' onClick={logOutUser}>
                                             <div className="col">
                                                 <div className="icon">
                                                     <i className="bi bi-box-arrow-left"></i>

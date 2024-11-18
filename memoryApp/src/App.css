@@ -6,9 +6,7 @@
 
 .auth, .rp{
   width: 100%;
-  height: 100vh;
 }
-
 
 .u, .app-wrapper{
   width: 100%;
@@ -402,11 +400,11 @@
     background: hsl(0, 0%, 100%);
   }
 
-  .reg{
-    margin-bottom: 180px;
+  .u{
+    margin-bottom: 80px;
   }
 
-  .app_content{
-    padding-bottom: 80px;
+  .em{
+    padding: 10px;
   }
 }

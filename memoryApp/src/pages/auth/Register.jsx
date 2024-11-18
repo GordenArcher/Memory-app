@@ -8,7 +8,7 @@ import { Notify } from '../../components/Notify';
 
 export const Register = () => {
 
-    const { saveToken } = useContext(AuthContext)
+    const { saveToken, theme } = useContext(AuthContext)
     const [loader, setLoader] = useState(false)
     const [data, setData] = useState({
         username: "",
@@ -74,15 +74,24 @@ export const Register = () => {
         }
     })
 
+    const dark = {
+        background: "black",
+        color : "white"
+    }
+
+    const b = {
+        border :"1px solid #ccc "
+    }
+
   return (
 
-    <div className='auth reg'>
+    <div className='auth'  style={theme === "light" ? dark : null}>
         <div className="login">
             <div className="login_wrapper">
                 <div className="login_left">
                     <div className="left_wrap">
 
-                        <div className="message">
+                        <div className="message"  style={theme === "light" ? dark : null}>
                         <span>Welcome, love! 💖 <br /> I&apos;m thrilled you&apos;re joining us. Let&apos;s start creating beautiful memories together. Sign up now, and let this be the beginning of something special just for us!</span>
                         </div>
 
@@ -96,7 +105,7 @@ export const Register = () => {
                 <div className="line"></div>
                 <div className="login_right">
                     <div className="auth_wrapper">
-                        <div className="auth_head">
+                        <div className="auth_head"  style={theme === "light" ? dark : null}>
                             <h4>Register Baby Girl!</h4>
                         </div>
 
@@ -104,9 +113,10 @@ export const Register = () => {
                             <form className="authent" onSubmit={registerUser}>
                                 <div className="form_">
                                    <div className="form_input">
-                                        <label htmlFor="username">Username</label>
+                                        <label htmlFor="username"  style={theme === "light" ? dark : null}>Username</label>
 
                                         <input 
+                                        style={theme === "light" ? b : null}
                                         type="text" 
                                         name='username' 
                                         id='username'
@@ -123,8 +133,9 @@ export const Register = () => {
                                    </div>
 
                                    <div className="form_input">
-                                        <label htmlFor="password">Email</label>
+                                        <label htmlFor="password"  style={theme === "light" ? dark : null}>Email</label>
                                         <input 
+                                        style={theme === "light" ? b : null}
                                         type='email'
                                         name='email' 
                                         id='email'
@@ -140,8 +151,9 @@ export const Register = () => {
                                    </div>
 
                                    <div className="form_input">
-                                        <label htmlFor="password">Password</label>
+                                        <label htmlFor="password"  style={theme === "light" ? dark : null}>Password</label>
                                         <input 
+                                        style={theme === "light" ? b : null}
                                         type={'password'} 
                                         name='password' 
                                         id='password'
@@ -157,8 +169,9 @@ export const Register = () => {
                                    </div>
 
                                    <div className="form_input">
-                                        <label htmlFor="password">Confirm Password</label>
+                                        <label htmlFor="password"  style={theme === "light" ? dark : null}>Confirm Password</label>
                                         <input 
+                                        style={theme === "light" ? b : null}
                                         type={'password'} 
                                         name='password2' 
                                         id='password2'

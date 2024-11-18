@@ -91,6 +91,12 @@
     gap: 10px;
 }
 
+.tt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .profile_list_item ul li{
     width: 100%;
     display: flex;
@@ -116,5 +122,9 @@
 @media screen and (max-width:786px) {
     .head h1{
         font-size: 1.3rem;
+    }
+
+    .profile_right{
+        margin-bottom: 70px;
     }
 }

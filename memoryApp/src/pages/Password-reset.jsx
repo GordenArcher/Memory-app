@@ -1,14 +1,16 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Loader } from "../components/Loader"
 import resetImage from '../assets/email-reqeust.svg'
 import { Notify } from "../components/Notify"
 import { toast } from "react-toastify"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../utils/context/AuthContext"
 
 export const PasswordReset = () => {
 
     const [email, setEmail] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const { theme } = useContext(AuthContext)
 
     const notify = (e) => toast(e)
     const navigate = useNavigate()
@@ -62,8 +64,24 @@ export const PasswordReset = () => {
         }
     })
 
+    const dark = {
+        background: "black",
+        color : "white"
+    }
+
+    const b = {
+        border :"1px solid #ccc "
+    }
+
   return (
-    <div className="rp">
+    <div className="rp" style={theme === "light" ? dark : null}>
+
+        <div className="back em" onClick={() => navigate("/")}>
+            <button>
+                <i className="bi bi-arrow-left-circle-fill"></i>
+            </button>
+        </div>
+
         <div className="password_request">
             <div className="request_wrapper">
                 <div className="request_left">
@@ -74,15 +92,16 @@ export const PasswordReset = () => {
 
                 <div className="request_right">
                     <div className="right_wrapper">
-                        <div className="right_mess">
+                        <div className="right_mess"  style={theme === "light" ? dark : null}>
                             <h1>Enter your email to recieve your password reset link</h1>
                         </div>
                         <form onSubmit={sendMail}>
 
                             <div className="request_form">
                                 <div className="request_form_input">
-                                    <label htmlFor="email">Email</label>
+                                    <label htmlFor="email"  style={theme === "light" ? dark : null}>Email</label>
                                     <input 
+                                      style={theme === "light" ? b : null}
                                     type="email" 
                                     id="email" 
                                     name="email" 
