@@ -136,67 +136,60 @@ export const Profile = () => {
                                 <div className="profile_list_item">
                                     <ul>
                                         <li>
-                                            <div className="col">
-                                                <div className="col"  style={theme === "light" ? dark : null}>
-                                                    <div className="icon">
-                                                        <i className="bi bi-person-fill"></i>
-                                                    </div>
-                                                    <div className="name">
-                                                        <p>{user.username}</p>
-                                                    </div>
+                                            <div className="col"  style={theme === "light" ? dark : null}>
+                                                <div className="icon">
+                                                    <i className="bi bi-person-fill"></i>
+                                                </div>
+                                                <div className="name">
+                                                    <p>{user.username}</p>
                                                 </div>
                                             </div>
                                         </li>
 
                                         <li>
-                                            <div className="col">
-                                                <div className="col" style={theme === "light" ? dark : null}>
-                                                    <div className="icon">
-                                                        <i className="bi bi-envelope-fill"></i>
-                                                    </div>
-                                                    <div className="name">
-                                                        {
-                                                            <p>{user.email ? user.email : "-"}</p>
-                                                        }
-                                                    </div>
+                                            <div className="col" style={theme === "light" ? dark : null}>
+                                                <div className="icon">
+                                                    <i className="bi bi-envelope-fill"></i>
+                                                </div>
+                                                <div className="name">
+                                                    {
+                                                        <p>{user.email ? user.email : "-"}</p>
+                                                    }
                                                 </div>
                                             </div>
                                         </li>
 
                                         <li>
-                                            <div className="col">
-                                                <div className="col" style={theme === "light" ? dark : null}>
-                                                    <div className="name tt">
-                                                        {
-                                                            theme === "light" ?
-                                                            <>
-                                                                <i className={`bi bi-sun-fill`}></i>
-                                                                <p>Light Mode</p>
-                                                            </>
-                                                            :
-                                                            <>
-                                                                <i className={`bi bi-moon-stars`}></i>
-                                                                <p>Dark Mode</p>
-                                                            </>
-                                                        }
-                                                    </div>
+                                            <div className="col" style={theme === "light" ? dark : null}>
+                                                <div className="name tt">
+                                                    {
+                                                        theme === "light" ?
+                                                        <>
+                                                            <i className={`bi bi-sun-fill`}></i>
+                                                            <p>Light Mode</p>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <i className={`bi bi-moon-stars`}></i>
+                                                            <p>Dark Mode</p>
+                                                        </>
+                                                    }
+                                                </div>
 
-                                                    <div className="slide">
-                                                    <input type="checkbox" name="viewPassword" id="view" hidden />
+                                                <div className="slide">
+                                                    <input type="checkbox" checked={theme === "light" ? true : false} name="viewPassword" id="view" hidden />
                                                     <label htmlFor="view" onClick={() => setPageTheme(current => !current)}></label>
-                                                </div>
                                                 </div>
                                             </div>
                                         </li>
 
                                         <li style={{color:'red'}} className='out' onClick={logOutUser}>
-                                            <div className="col">
-                                                <div className="icon">
-                                                    <i className="bi bi-box-arrow-left"></i>
-                                                </div>
-                                                <div className="name">
-                                                    <p>Logout</p>
-                                                </div>
+
+                                            <div className="icon">
+                                                <i className="bi bi-box-arrow-left"></i>
+                                            </div>
+                                            <div className="name">
+                                                <p>Logout</p>
                                             </div>
                                         </li>
                                     </ul>
