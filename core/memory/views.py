@@ -3,7 +3,6 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from .admin import MemoryAdmin
 from .serializers import UserSerializer, ProfilePicSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
@@ -20,7 +19,6 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.exceptions import ObjectDoesNotExist
-
 # Create your views here.
 
 @api_view(['POST'])
@@ -46,6 +44,37 @@ def login(request):
     else:
         return Response({"error":"Babe! you forgot your credentials ?"}, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+def register(request):
+    data = request.data
+    username = data.get("username")
+    email = data.get("email")
+    password = data.get("password")
+    password2 = data.get("password2")
+
+    if password == password2:
+        if User.objects.filter(username=username).exists():
+            return Response({"error":f"{username} already exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+        elif User.objects.filter(email=email).exists():
+            return Response({"error":f"{email} already exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.save()
+
+            token, _ = Token.objects.ccreate(user=request.user)
+
+            serializer = UserSerializer(user)
+            return Response(
+                {
+                    "data":serializer.data,
+                    "token":Token.key
+                    }, status=status.HTTP_200_OK)
+
+    return Response({"error":"Password does not match"}, status=status.HTTP_400_BAD_REQUEST)
+            
 
 @api_view(['POST'])
 @login_required()

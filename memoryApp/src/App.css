@@ -16,6 +16,11 @@
   gap: 10px;
 }
 
+.app-wrapper{
+  gap: 0;
+  height: 100vh;
+}
+
 .login, .login_wrapper, .login_left, .message, .login_right, .auth_wrapper,
 .login_auth, .left_image, .form_, .submit, .v, .left_wrap, .password_request,
 .request_wrapper, .right_wrapper, .sent_request, .request_form, .email-done,

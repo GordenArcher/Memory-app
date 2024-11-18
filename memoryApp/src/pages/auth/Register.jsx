@@ -34,14 +34,16 @@ export const Register = () => {
 
             setLoader(true)
     
-          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/register/", {
+          const response = await fetch("http://localhost:8000/api/register/", {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
             body : JSON.stringify({
                 username : data.username,
-                password : data.password
+                email: data.email,
+                password: data.password,
+                password2: data.password2
             })
           })
           
@@ -80,7 +82,8 @@ export const Register = () => {
     }
 
     const b = {
-        border :"1px solid #ccc "
+        border :"1px solid #ccc",
+        color : "#fff"
     }
 
   return (
@@ -91,7 +94,7 @@ export const Register = () => {
                 <div className="login_left">
                     <div className="left_wrap">
 
-                        <div className="message"  style={theme === "light" ? dark : null}>
+                        <div className="message" style={theme === "light" ? dark : null}>
                         <span>Welcome, love! 💖 <br /> I&apos;m thrilled you&apos;re joining us. Let&apos;s start creating beautiful memories together. Sign up now, and let this be the beginning of something special just for us!</span>
                         </div>
 
@@ -105,7 +108,7 @@ export const Register = () => {
                 <div className="line"></div>
                 <div className="login_right">
                     <div className="auth_wrapper">
-                        <div className="auth_head"  style={theme === "light" ? dark : null}>
+                        <div className="auth_head" style={theme === "light" ? dark : null}>
                             <h4>Register Baby Girl!</h4>
                         </div>
 
@@ -133,7 +136,7 @@ export const Register = () => {
                                    </div>
 
                                    <div className="form_input">
-                                        <label htmlFor="password"  style={theme === "light" ? dark : null}>Email</label>
+                                        <label htmlFor="password" style={theme === "light" ? dark : null}>Email</label>
                                         <input 
                                         style={theme === "light" ? b : null}
                                         type='email'

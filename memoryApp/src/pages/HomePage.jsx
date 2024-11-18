@@ -31,7 +31,7 @@ export const HomePage = () => {
 
     const dark = {
         background: "black",
-        color : "white"
+        color : "white",
     }
 
   return (

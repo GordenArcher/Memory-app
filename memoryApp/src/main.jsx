@@ -5,7 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import { AuthContextprovider } from './utils/context/AuthContext.jsx'
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('memory_app')).render(
   <StrictMode>
     <BrowserRouter>
     <AuthContextprovider>
