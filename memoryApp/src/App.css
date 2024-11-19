@@ -14,8 +14,13 @@ body.dark{
   color: hsl(0, 0%, 100%);
 }
 
-.auth, .rp{
+.auth{
   width: 100%;
+}
+
+.rp{
+  width: 100%;
+  height: 100vh;
 }
 
 .u, .app-wrapper{
@@ -44,6 +49,36 @@ body.dark{
 
 .login, .password_request, .padd, .reset, .upload_data{
   padding: 40px;
+}
+
+.em{
+  position: absolute;
+  padding: 20px;
+}
+
+.em button{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.em button i{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: hsl(241, 97%, 24%);
+  transition: all .3s ease;
+}
+
+.em button:hover{
+  background: hsl(241, 97%, 24%);
+}
+
+.em button:hover i{
+  color: hsl(0, 0%, 100%);
 }
 
 .line{
@@ -425,5 +460,9 @@ body.dark{
 
   .em{
     padding: 10px;
+  }
+
+  .password_request{
+    padding: 20px;
   }
 }

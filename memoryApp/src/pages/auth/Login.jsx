@@ -146,7 +146,7 @@ export const Login = () => {
                                         </button>
                                    </div>
 
-                                   <div className='v'>
+                                   <div className='v' style={theme === "light" ? dark : null}>
                                         <div className="view_password">
                                             <div className="slide">
                                                 <input type="checkbox" name="viewPassword" id="view" hidden />

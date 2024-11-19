@@ -76,7 +76,7 @@ export const PasswordReset = () => {
   return (
     <div className="rp" style={theme === "light" ? dark : null}>
 
-        <div className="back em" onClick={() => navigate("/")}>
+        <div className="em" onClick={() => navigate("/")}>
             <button>
                 <i className="bi bi-arrow-left-circle-fill"></i>
             </button>
@@ -92,7 +92,7 @@ export const PasswordReset = () => {
 
                 <div className="request_right">
                     <div className="right_wrapper">
-                        <div className="right_mess"  style={theme === "light" ? dark : null}>
+                        <div className="right_mess" style={theme === "light" ? dark : null}>
                             <h1>Enter your email to recieve your password reset link</h1>
                         </div>
                         <form onSubmit={sendMail}>
