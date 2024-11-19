@@ -345,6 +345,10 @@ body.dark{
   }
 }
 
+.v{
+  background: hsl(0, 0%, 100%);
+}
+
 @media screen and (max-width:786px) {
 
   .login{
