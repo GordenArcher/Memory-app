@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+body.light{
+  background: hsl(0, 0%, 100%);
+  color: hsl(0, 0%, 0%);
+}
+
+body.dark{
+  background: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+}
+
 .auth, .rp{
   width: 100%;
 }

@@ -57,7 +57,9 @@ export const HomePage = () => {
 
                         ?
                         
-                        <HomeLoader />
+                        <div className="loading">
+                            <HomeLoader />
+                        </div>
 
                         :
 
