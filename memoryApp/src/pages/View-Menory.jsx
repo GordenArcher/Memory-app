@@ -111,21 +111,21 @@ export const ViewMenory = () => {
                             <div className="memory-descriptio">
                                 <div className="memo-about" style={theme === "light" ? dark : null}>
                                     <h3>{memoryData.description}</h3>
-                                    
                                 </div>
                             </div>
                         }
 
                         <div className="memory-date">
                             <div className="date" style={theme === "light" ? dark : null}>
-                                <span>Uploaded on </span>
+                                <span>You uploaded this on </span>
                                 <p>{newDate}</p>
+                                <span> <i className='bi bi-calendar-check'></i> </span>
                             </div>
                         </div>
 
                         <div className="options">
                             <div className="delete" onClick={deleteMemory}>
-                                <button>{isLoading ? <Loader /> : "Delete"}</button>
+                                <button>{isLoading ? <Loader /> : <div>Delete <i className="bi bi-trash"></i> </div>}</button>
                             </div>
                         </div>
                     </div>

@@ -97,37 +97,45 @@ export const HomePage = () => {
 
                         data && data.length > 0 ? 
                         (
-                            <div className="main_grid">
+                            <div className="main_data">
                                 {groupedUploads.today.length > 0 && (
-                                    <>
+                                    <section>
                                         <h5>Today</h5>
-                                        {groupedUploads.today.map((upload) => (
-                                            <MemoryComp key={upload.id} d={upload} />
-                                        ))}
-                                    </>
+                                        <div className='main_grid'>
+                                            {groupedUploads.today.map((upload) => (
+                                                <MemoryComp key={upload.id} d={upload} />
+                                            ))}
+                                        </div>
+                                    </section>
                                 )}
                                 {groupedUploads.yesterday.length > 0 && (
-                                    <>
+                                    <section>
                                         <h5>Yesterday</h5>
-                                        {groupedUploads.yesterday.map((upload) => (
-                                            <MemoryComp key={upload.id} d={upload} />
-                                        ))}
-                                    </>
+                                        <div className='main_grid'>
+                                            {groupedUploads.yesterday.map((upload) => (
+                                                <MemoryComp key={upload.id} d={upload} />
+                                            ))}
+                                        </div>
+                                    </section>
                                 )}
                                 {groupedUploads.lastWeek.length > 0 && (
-                                    <>
+                                    <section>
                                         <h5>Previous 7 Days</h5>
-                                        {groupedUploads.lastWeek.map((upload) => (
-                                            <MemoryComp key={upload.id} d={upload} />
-                                        ))}
-                                    </>
+                                        <div className='main_grid'>
+                                            {groupedUploads.lastWeek.map((upload) => (
+                                                <MemoryComp key={upload.id} d={upload} />
+                                            ))}
+                                        </div>
+                                    </section>
                                 )}
                                 {groupedUploads.older.length > 0 && (
                                     <section>
                                         <h5>Older</h5>
-                                        {groupedUploads.older.map((upload) => (
-                                            <MemoryComp key={upload.id} d={upload} />
-                                        ))}
+                                        <div className='main_grid'>
+                                            {groupedUploads.older.map((upload) => (
+                                                <MemoryComp key={upload.id} d={upload} />
+                                            ))}
+                                        </div>
                                     </section>
                                 )}
                                 
