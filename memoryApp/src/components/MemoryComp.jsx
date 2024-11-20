@@ -65,6 +65,7 @@ export const MemoryComp = ({ d }) => {
                 <div className="memory-date">
                     <div className="date" style={theme === "light" ? dark : null}>
                         <span>Uploaded on </span>
+                        
                         <p>{newDate}</p>
                     </div>
                 </div>

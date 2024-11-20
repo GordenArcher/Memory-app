@@ -159,6 +159,14 @@
     gap: 20px;
 }
 
+.main_grid h5{
+    padding-left: 15px;
+}
+
+.main_grid h5{
+    margin-top: 50px;
+}
+
 .mem-wrapper{
     display: flex;
     flex-direction: column;
@@ -338,6 +346,14 @@
 
     .show, .tabs{
         display: initial;
+    }
+
+    .home{
+        padding: 10px;
+    }
+
+    .home_page, .main_page{
+        padding: 0;
     }
 
     .main_grid{

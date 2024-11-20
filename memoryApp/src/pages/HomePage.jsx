@@ -34,6 +34,35 @@ export const HomePage = () => {
         color : "white",
     }
 
+    const groupUploadsByTimeframe = (uploads) => {
+        const now = new Date();
+        const today = [];
+        const yesterday = [];
+        const lastWeek = [];
+        const older = [];
+    
+        uploads.forEach((upload) => {
+            const uploadedDate = new Date(upload.date_created);
+            const diffTime = now - uploadedDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // Difference in days
+    
+            if (diffDays < 1) {
+                today.push(upload); 
+            } else if (diffDays === 1) {
+                yesterday.push(upload); 
+            } else if (diffDays <= 7) {
+                lastWeek.push(upload); 
+            } else {
+                older.push(upload); 
+            }
+        });
+    
+        return { today, yesterday, lastWeek, older };
+
+    }   
+
+    const groupedUploads = data && data.length > 0 ? groupUploadsByTimeframe(data) : {};
+
   return (
     <>
     <div className="home" style={theme === "light" ? dark : null}>
@@ -41,6 +70,7 @@ export const HomePage = () => {
         <div className="main_page">
             <main>
                 <div className="main-memory">
+
                     { 
                     !isOnline ? 
                     (
@@ -68,10 +98,40 @@ export const HomePage = () => {
                         data && data.length > 0 ? 
                         (
                             <div className="main_grid">
-                            {data.map((d) => {
-                                return <MemoryComp key={d.id} d={d} />
-                            })}
-                        </div>
+                                {groupedUploads.today.length > 0 && (
+                                    <>
+                                        <h5>Today</h5>
+                                        {groupedUploads.today.map((upload) => (
+                                            <MemoryComp key={upload.id} d={upload} />
+                                        ))}
+                                    </>
+                                )}
+                                {groupedUploads.yesterday.length > 0 && (
+                                    <>
+                                        <h5>Yesterday</h5>
+                                        {groupedUploads.yesterday.map((upload) => (
+                                            <MemoryComp key={upload.id} d={upload} />
+                                        ))}
+                                    </>
+                                )}
+                                {groupedUploads.lastWeek.length > 0 && (
+                                    <>
+                                        <h5>Previous 7 Days</h5>
+                                        {groupedUploads.lastWeek.map((upload) => (
+                                            <MemoryComp key={upload.id} d={upload} />
+                                        ))}
+                                    </>
+                                )}
+                                {groupedUploads.older.length > 0 && (
+                                    <section>
+                                        <h5>Older</h5>
+                                        {groupedUploads.older.map((upload) => (
+                                            <MemoryComp key={upload.id} d={upload} />
+                                        ))}
+                                    </section>
+                                )}
+                                
+                            </div>
                         )
                         :
 
