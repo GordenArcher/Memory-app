@@ -118,8 +118,8 @@ export const ViewMenory = () => {
                         <div className="memory-date">
                             <div className="date" style={theme === "light" ? dark : null}>
                                 <span>You uploaded this on </span>
-                                <p>{newDate}</p>
-                                <span> <i className='bi bi-calendar-check'></i> </span>
+                                <p>{newDate} <span> <i className='bi bi-calendar-check'></i> </span></p>
+                                
                             </div>
                         </div>
 

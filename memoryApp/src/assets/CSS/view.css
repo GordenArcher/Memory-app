@@ -29,6 +29,12 @@
     font-size: 1.5rem;
 }
 
+.date{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .mm .hm{
     display: flex;
     flex-direction: column;
