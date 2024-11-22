@@ -13,6 +13,7 @@ import { ViewMenory } from './pages/View-Menory'
 import { Navbar } from './components/Navbar'
 import { Tab } from './components/Tab'
 import { Register } from './pages/auth/Register'
+import { Chat } from './pages/Chat'
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <>
           <Route path="/" element={<HomePage />} />
           <Route path="upload/" element={<UpLoadImage />} />
+          <Route path="chat/" element={<Chat />} />
           <Route path="profile/" element={<Profile />} />
           <Route path="view-memory/:id/" element={<ViewMenory />} />
         </>

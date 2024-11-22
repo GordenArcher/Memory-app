@@ -18,6 +18,10 @@
     gap: 40px;
 }
 
+.offline{
+    align-items: center;
+}
+
 .nav{
     position: sticky;
     top: 0;
@@ -265,6 +269,11 @@
 
 .tab ul a button:active{
     background: hsla(0, 0%, 100%, 0.298);
+}
+
+.tab ul a button svg{
+    width: 2rem;
+    height: 2rem;
 }
 
 .memory_image .controls{

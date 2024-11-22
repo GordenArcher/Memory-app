@@ -1,24 +1,13 @@
-import { useContext, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { AuthContext } from "../utils/context/AuthContext"
+import { Link } from "react-router-dom"
 import '../assets/CSS/home.css'
-import { FetchUser } from "../utils/hooks/FetchUser"
 import Avatar from '../assets/avatar-4.png'
 import { FetchProfilePic } from "../utils/hooks/GetUserProfile"
 
 export const Navbar = () => {
 
-    const [showChildProfile, setShowChildProfile] = useState(false)
-    const { logOut } = useContext(AuthContext)
-    const { user } = FetchUser()
     const { pic } = FetchProfilePic()
 
-    const navigate = useNavigate()
 
-    const logOutUser = () => {
-        logOut()
-        navigate("/")
-    }
 
   return (
     <div className="nav">
@@ -51,7 +40,29 @@ export const Navbar = () => {
                                     <i className="bi bi-cloud-upload"></i>
                                 </div>
                                 <div className="name">
-                                    <p>Upload Memorey</p>
+                                    <p>Upload Memory</p>
+                                </div>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to={"/profile"}>
+                                <div className="icon">
+                                    <i className="bi bi-person"></i>
+                                </div>
+                                <div className="name">
+                                    <p>Profile</p>
+                                </div>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link to={"/chat"}>
+                                <div className="icon">
+                                    <i className="bi bi-asterisk"></i>
+                                </div>
+                                <div className="name">
+                                    <p>Chat AI</p>
                                 </div>
                             </Link>
                         </li>
@@ -61,12 +72,12 @@ export const Navbar = () => {
 
             <div className="profile">
                 <div className="set-profile">
-                    <div className="profile_image" onClick={() => setShowChildProfile((currentState) => !currentState)}>
+                    <div className="profile_image">
                         <img src={!pic.profile_image ? Avatar : `https://gordenarcher.pythonanywhere.com/${pic.profile_image}` } alt="" />
                     </div>
                 </div>
                 
-                {
+                {/* {
                     showChildProfile 
                 && 
                     <div className="set-profile-children">
@@ -88,14 +99,16 @@ export const Navbar = () => {
                                         <div className="name">Profile</div>
                                     </Link>
                                 </li>
-                                <li className="show">
-                                    <Link to={"/upload"}>
+
+                                <li>
+                                    <Link to={"/chat"}>
                                         <div className="p_icon">
                                             <i className="bi bi-cloud-upload"></i>
                                         </div>
-                                        <div className="name">Upload</div>
+                                        <div className="name">Chat with AI</div>
                                     </Link>
                                 </li>
+
                                 <li>
                                     <Link className="s" onClick={logOutUser}>
                                         <div className="p_icon">
@@ -108,7 +121,7 @@ export const Navbar = () => {
                             </ul>
                         </div>
                     </div>
-                }
+                } */}
             </div>
         </div>
     </div>

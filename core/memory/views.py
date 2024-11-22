@@ -262,3 +262,46 @@ def delete_image(request, pk):
 
     except Exception as e:
         return Response({"error": f"An error occurred: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+import requests
+
+
+@api_view(['POST'])
+def generate_content(request):
+    text = request.data.get("text", "").strip()
+
+    if not text:
+        return Response({"error": "Text field is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent"
+    api_key = "AIzaSyDscERusNhsZPu2i3l95du_JHzswyB4dHE"
+    headers = {"Content-Type": "application/json"}
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {
+                        "text": text
+                    }
+                ]
+            }
+        ]
+    }
+
+    try:
+        response = requests.post(
+            f"{url}?key={api_key}",
+            headers=headers,
+            json=payload
+        )
+        response_data = response.json()
+
+        if response.status_code != 200:
+            return Response({"error": response_data.get("error", "Failed to generate content")},
+                            status=response.status_code)
+
+        return Response({"response": response_data}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
