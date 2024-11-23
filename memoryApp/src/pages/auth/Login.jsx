@@ -29,7 +29,7 @@ export const Login = () => {
 
             setLoader(true)
     
-          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/login/", {
+          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/v1/login/", {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

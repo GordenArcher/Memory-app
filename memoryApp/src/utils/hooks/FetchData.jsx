@@ -12,7 +12,7 @@ export const FetchData = () => {
             try {
                 setIsLoading(true)
 
-                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/home_page/", {
+                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/v1/home_page/", {
                     method:'GET',
                     headers : {
                         "Content-Type":"application/json",

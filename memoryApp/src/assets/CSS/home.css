@@ -12,6 +12,32 @@
     height: 100vh;
 }
 
+.empty{
+    height: 80vh;
+}
+
+.iss{
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.err-img{
+    width: 50%;
+}
+
+.err-img img{
+    width: 100%;
+}
+
+.err-mes{
+    padding: 20px;
+    font-size: 1.3rem;
+}
+
 .home, .offline{
     display: flex;
     flex-direction: column;
@@ -382,6 +408,10 @@
 
     .main-memory{
         margin-bottom: 70px;
+    }
+
+    .empty{
+        height: 100%;
     }
 
     .empty img{

@@ -32,7 +32,7 @@ export const UpLoadImage = () => {
     
         try {
           setIsLoading(true)
-          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/send_image/", {
+          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/v1/send_image/", {
             method:"POST",
             headers:{
               'Authorization': `Token ${token}`

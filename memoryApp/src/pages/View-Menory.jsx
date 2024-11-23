@@ -32,7 +32,7 @@ export const ViewMenory = () => {
 
         try {
             setIsLoading(true)
-            const response = await fetch(`https://gordenarcher.pythonanywhere.com/api/delete_image/${id}/`, {
+            const response = await fetch(`https://gordenarcher.pythonanywhere.com/api/v1/delete_image/${id}/`, {
                 method:"DELETE",
                 headers:{
                     "Authorization":`Token ${token}`

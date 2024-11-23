@@ -10,7 +10,7 @@ export const FetchUser = () => {
         const getUserData = async () => {
         
             try {
-                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/get_user/", {
+                const response = await fetch("https://gordenarcher.pythonanywhere.com/api/v1/get_user/", {
                     method: "GET",
                     headers: {
                         "Authorization": `Token ${token}`,

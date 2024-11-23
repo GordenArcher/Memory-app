@@ -14,6 +14,7 @@ import { Navbar } from './components/Navbar'
 import { Tab } from './components/Tab'
 import { Register } from './pages/auth/Register'
 import { Chat } from './pages/Chat'
+// import ErrImg from './assets/err.svg'
 
 function App() {
 
@@ -64,6 +65,15 @@ function App() {
   ), [token]);
 
   return (
+
+  //   <div className="iss">
+  //   <div className='err-img'>
+  //       <img src={ErrImg} alt="server error message" />
+  //   </div>
+  //   <div className='err-mes'>
+  //     Please wer&apos;e having some server issues, please wait for some time, sorry for the incovienience
+  //   </div>
+  // </div>
     <div className={theme === 'light' ? `app-wrapper dark` : `app-wrapper light`}>
       {token && 
         <div className="headddd" id='nav'>

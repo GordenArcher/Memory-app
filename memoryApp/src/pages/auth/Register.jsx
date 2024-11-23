@@ -34,7 +34,7 @@ export const Register = () => {
 
             setLoader(true)
     
-          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/register/", {
+          const response = await fetch("https://gordenarcher.pythonanywhere.com/api/v1/register/", {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
