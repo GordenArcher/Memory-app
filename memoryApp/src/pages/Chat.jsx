@@ -39,7 +39,7 @@ export const Chat = () => {
     const fetchGeneratedContent = async () => {
         if (!message.trim()) return notify("Enter a message");
 
-        const res = await fetch("https://gordenarcher.pythonanywhere.com/api/generate_content/", {
+        const res = await fetch("https://gordenarcher.pythonanywhere.com/api/v1/generate_content/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

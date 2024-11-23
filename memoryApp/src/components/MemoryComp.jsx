@@ -48,7 +48,7 @@ export const MemoryComp = ({ d }) => {
                                 </>
                         ) : (
                             <div onClick={navigateView}>
-                                <img src={`https://gordenarcher.pythonanywhere.com/${d.media}`} alt="memory" width="300" />
+                                <img src={`https://gordenarcher.pythonanywhere.com${d.media}`} alt="memory" width="300" />
                             </div>
                         )
                     )}
