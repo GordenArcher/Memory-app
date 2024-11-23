@@ -118,7 +118,7 @@ export const UpLoadImage = () => {
                       <div className="upload_auth">
                           <form onSubmit={sendImage}>
                               <div className="upload_form">
-                                <div className="upload_input desck">
+                                <div className="upload_input desck up">
                                   <label htmlFor="description" style={theme === "light" ? dark : null}>Description</label>
                                   <input 
                                   style={theme === "light" ? b : null}

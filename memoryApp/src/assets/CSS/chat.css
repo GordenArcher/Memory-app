@@ -48,8 +48,6 @@
     padding: 8px 12px;
     border-radius: 15px; 
     max-width: 70%; 
-    display: flex;
-    align-items: center;
 }
 
 .act_mess_sent div {
@@ -155,9 +153,9 @@
     font-size: 1.2rem;
 }
 
-.s_chatm textarea{
+.s_chatm input{
     width: 100%;
-    height: 56px;
+    height: 60px;
     padding: 20px;
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 6px;
@@ -166,12 +164,11 @@
     background: transparent;
     color: hsl(0, 0%, 0%);
     transition: .3s ease;
-    resize: none;
     font-family: Arial, Helvetica, sans-serif;
-    padding-bottom: 10px;
+    margin: 10px 0;
 }
 
-.s_chatm textarea:focus{
+.s_chatm input:focus{
     border: 1px solid hsla(241, 97%, 24%);
 }
 
@@ -216,12 +213,16 @@
     }
 
     .chat_input{
+        gap: 10px;
         padding: 10px;
-        margin-top: 10px;
     }
 
-    .s_chatm textarea{
+    .s_chatm input{
         height: 45px;
+    }
+
+    .s_c button{
+        background: hsl(0, 0%, 80%);
     }
 
     .s_c button img{

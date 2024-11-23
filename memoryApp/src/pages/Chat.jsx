@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import { Notify } from "../components/Notify";
 import '../assets/CSS/chat.css';
 import Bot from '../assets/bott.png';
-import UserImg from '../assets/use.png';
 import sendImg from '../assets/se.png';
 import NonImg from '../assets/e.svg';
 import { AuthContext } from "../utils/context/AuthContext";
@@ -19,16 +18,6 @@ export const Chat = () => {
 
     const textareaRef = useRef(null);
     const chatContainerRef = useRef(null);
-
-    const handleInput = () => {
-        const textarea = textareaRef.current;
-        textarea.style.height = "auto";
-        textarea.style.height = `${textarea.scrollHeight}px`;
-
-        if(message.length < 30){
-            textarea.style.height = "56px";
-        }
-    };
 
     useEffect(() => {
         if (chatContainerRef.current) {
@@ -104,7 +93,7 @@ export const Chat = () => {
 
                                             <div className="cent_smt">
                                             Say something to start the conversation! <i className="bi bi-messenger"></i>  <br /> <br />
-                                            <p>Whenever you refresh all your chat will be lost, sorry for the inconvenience, we&apos;ll fix it very soon, for now ENJOY</p>
+                                            <p>Whenever you refresh, all your chat will be lost, sorry for the inconvenience, we&apos;ll fix it very soon, for now ENJOY</p>
                                             </div>
                                             
                                         </div>
@@ -124,9 +113,6 @@ export const Chat = () => {
                                                 )}
                                             </div>
                                             <div className={msg.sender === "user" ? "act_mess_sent" : "act_res"}>
-                                                {msg.sender === "user" && (
-                                                    <img src={UserImg} alt="ai image" />
-                                                )}
                                                 <div style={theme === "light" ? c : null}>{msg.text || "Loading..."}</div>
                                             </div>
                                         </div>
@@ -139,10 +125,9 @@ export const Chat = () => {
 
                     <div className="chat_input">
                         <div className="s_chatm">
-                            <textarea
+                            <input
                                 style={theme === "light" ? j : null}
                                 ref={textareaRef}
-                                onInput={handleInput}
                                 type="text"
                                 name="text"
                                 value={message}
@@ -155,20 +140,18 @@ export const Chat = () => {
                                         handleUserMessage();
                                     }
                                 }}
-                            ></textarea>
+                            />
                         </div>
 
-                        {message.length > 0 && message.trim() && (
-                            <div className="s_chat_mess">
-                                <div className="s_c">
-                                    <button onClick={handleUserMessage}>
-                                        <div className="v_s">
-                                            <img src={sendImg} alt="send image" />
-                                        </div>
-                                    </button>
-                                </div>
+                        <div className="s_chat_mess">
+                            <div className="s_c">
+                                <button onClick={handleUserMessage}>
+                                    <div className="v_s">
+                                        <img src={sendImg} alt="send image" />
+                                    </div>
+                                </button>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
             </div>
