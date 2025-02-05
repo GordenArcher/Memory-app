@@ -14,11 +14,22 @@ import { Navbar } from './components/Navbar'
 import { Tab } from './components/Tab'
 import { Register } from './pages/auth/Register'
 import { Chat } from './pages/Chat'
+import { FetchData } from './utils/hooks/FetchData'
+import { FetchProfilePic } from './utils/hooks/GetUserProfile'
 // import ErrImg from './assets/err.svg'
 
 function App() {
 
-  const { token, theme } = useContext(AuthContext)
+  const { token, setDataFetched, setIsLoadingData, setUserProfile } = useContext(AuthContext)
+
+  const {data, isLoading} = FetchData()
+  const { pic } = FetchProfilePic()
+
+  useEffect(() => {
+      setDataFetched(data)
+      setIsLoadingData(isLoading)
+      setUserProfile(pic)
+  }, [data, isLoading, setDataFetched, setIsLoadingData, setUserProfile, pic])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +47,6 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
 
   const routes = useMemo(() => (
     <Routes>
@@ -56,11 +66,12 @@ function App() {
       <>
         <Route path="/" element={<Login />} />
         <Route path="/auth:register" element={<Register />} />
+        <Route path="request-password/" element={<PasswordReset />} />
+        <Route path="reset-password/:uidb64/:token" element={<ResetPassword />} />
+        <Route path="sent-mail/" element={<EmailSent />} />
       </>
       }
-      <Route path="request-password/" element={<PasswordReset />} />
-      <Route path="reset-password/:uidb64/:token" element={<ResetPassword />} />
-      <Route path="sent-mail/" element={<EmailSent />} />
+      
     </Routes>
   ), [token]);
 
@@ -74,7 +85,7 @@ function App() {
   //     Please wer&apos;e having some server issues, please wait for some time, sorry for the incovienience
   //   </div>
   // </div>
-    <div className={theme === 'light' ? `app-wrapper dark` : `app-wrapper light`}>
+    <div className="app-wrapper">
       {token && 
         <div className="headddd" id='nav'>
           <Navbar />

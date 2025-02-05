@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext"
 export const FetchData = () => {
 
     const { token } = useContext(AuthContext)
-    const [dataFetched, setDataFetched] = useState([])
+    const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
@@ -22,7 +22,7 @@ export const FetchData = () => {
         
                 if(response.ok){
                     const data = await response.json()
-                    setDataFetched(data.data)
+                    setData(data.data)
                     setIsLoading(false)
                 }else{
                     const errorData = await response.json()
@@ -42,6 +42,6 @@ export const FetchData = () => {
         getUserData()
     }, [token])
 
-  return { data : dataFetched, isLoading }
+  return { data, isLoading }
 }
 

@@ -8,7 +8,7 @@ import { Notify } from '../../components/Notify';
 
 export const Login = () => {
 
-    const { saveToken, theme } = useContext(AuthContext)
+    const { saveToken } = useContext(AuthContext)
     const [viewPassword, setViewPassword] = useState(false)
     const [loader, setLoader] = useState(false)
     const [data, setData] = useState({
@@ -37,7 +37,8 @@ export const Login = () => {
             body : JSON.stringify({
                 username : data.username,
                 password : data.password
-            })
+            }),
+            
           })
           
           if(response.ok){
@@ -69,25 +70,15 @@ export const Login = () => {
         }
     })
 
-    const dark = {
-        background: "black",
-        color : "white"
-    }
-
-    const b = {
-        border :"1px solid #ccc",
-        color : "#fff"
-    }
-
   return (
 
-    <div className='auth'  style={theme === "light" ? dark : null}>
+    <div className='auth'>
         <div className="login">
             <div className="login_wrapper">
                 <div className="login_left">
                     <div className="left_wrap">
 
-                        <div className="message"  style={theme === "light" ? dark : null}>
+                        <div className="message">
                             <span>Welcome, love! 💖 <br /> I&apos;m so glad to have you here. Log in and let&apos;s keep creating memories together. Every moment here is just for us—enjoy it!</span>
                         </div>
 
@@ -101,7 +92,7 @@ export const Login = () => {
                 <div className="line"></div>
                 <div className="login_right">
                     <div className="auth_wrapper">
-                        <div className="auth_head"  style={theme === "light" ? dark : null}>
+                        <div className="auth_head">
                             <h4>Login Baby Girl!</h4>
                         </div>
 
@@ -109,10 +100,9 @@ export const Login = () => {
                             <form className="authent" onSubmit={loginUser}>
                                 <div className="form_">
                                    <div className="form_input">
-                                        <label htmlFor="username"  style={theme === "light" ? dark : null}>Username</label>
+                                        <label htmlFor="username" >Username</label>
 
                                         <input 
-                                        style={theme === "light" ? b : null}
                                         type="text" 
                                         name='username' 
                                         id='username'
@@ -129,9 +119,8 @@ export const Login = () => {
                                    </div>
 
                                    <div className="form_input">
-                                        <label htmlFor="password" style={theme === "light" ? dark : null}>Password</label>
+                                        <label htmlFor="password" >Password</label>
                                         <input 
-                                          style={theme === "light" ? b : null}
                                         type={viewPassword ? 'text' : 'password'} 
                                         name='password' 
                                         id='password'
@@ -146,7 +135,7 @@ export const Login = () => {
                                         </button>
                                    </div>
 
-                                   <div className='v' style={theme === "light" ? dark : null}>
+                                   <div className='v' >
                                         <div className="view_password">
                                             <div className="slide">
                                                 <input type="checkbox" name="viewPassword" id="view" hidden />
@@ -173,8 +162,8 @@ export const Login = () => {
                         </div>
 
                         <div>
-                                    <span>Already have an account ? <Link to={"/auth:register"}>Register</Link> </span>
-                                </div>
+                            <span>Already have an account ? <Link to={"/auth:register"}>Register</Link> </span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { createContext, useEffect, useRef, useState } from "react"
 
 export const AuthContext = createContext()
@@ -5,18 +6,17 @@ export const AuthContext = createContext()
 export const AuthContextprovider = ({ children }) => {
     const [token, setToken] = useState(null)
     const [controls, setControls] = useState({})
-    const [theme, setTheme] = useState("light")
+    const [dataFetched, setDataFetched] = useState([])
+    const [userProfile, setUserProfile] = useState({})
+    const [isLoadingData, setIsLoadingData] = useState(false)
     const videoRefs = useRef({})
+
+    console.log(dataFetched)
 
     useEffect(() => {
         return () => {
             videoRefs.current = {};
         };
-    }, []);
-
-    useEffect(() => {
-        const getTheme = localStorage.getItem("theme") || "light"
-        setTheme(getTheme)
     }, []);
 
     useEffect(() => {
@@ -57,15 +57,29 @@ export const AuthContextprovider = ({ children }) => {
         setControls((prev) => ({ ...prev, [id]: false }));
     }
 
-    const setPageTheme = () => {
-        const currentTheme = theme === "light" ? "dark" : "light"
-        localStorage.setItem("theme", currentTheme)
-        setTheme(currentTheme)
-    }
-
   return (
-    <AuthContext.Provider value={{token, saveToken, setToken, logOut, play, pause, controls, videoRefs, endVideo, theme, setPageTheme}}>
+    <AuthContext.Provider value={{
+    token, 
+    saveToken, 
+    setToken, 
+    logOut, 
+    play, 
+    pause, 
+    controls, 
+    videoRefs, 
+    endVideo,
+    dataFetched,
+    setDataFetched,
+    isLoadingData,
+    setIsLoadingData,
+    userProfile,
+    setUserProfile
+    }}>
         {children}
     </AuthContext.Provider>
   )
+}
+
+AuthContextprovider.propTypes = {
+    children: PropTypes.node
 }

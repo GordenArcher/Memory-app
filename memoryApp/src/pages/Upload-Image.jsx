@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const UpLoadImage = () => {
 
-    const { token, theme } = useContext(AuthContext)
+    const { token } = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(false)
     const [image, setImage] = useState(null)
     const [data, setData] = useState({
@@ -23,8 +23,8 @@ export const UpLoadImage = () => {
         e.preventDefault()
     
         const formData = new FormData();
-        formData.append("description", data.description);
-        formData.append("media", data.media);
+        formData.append("description", data.description)
+        formData.append("media", data.media)
 
         if(!data.description.trim()) return notify("Enter a valid Description");
 
@@ -83,24 +83,14 @@ export const UpLoadImage = () => {
         }
       };
 
-      const dark = {
-        background: "black",
-        color : "white"
-    }
-
-    const b = {
-      border :"1px solid #ccc ",
-      color :"#fff"
-    }
-
 
   return (
-    <div className='u' style={theme === "light" ? dark : null}>
+    <div className='u'>
         <div className="upload_data">
             <div className="upload_wrapper">
               <div className="upload_left">
                 <div className="upload_left_wrap">
-                  <div className="message" style={theme === "light" ? dark : null}>
+                  <div className="message">
                     <span>Welcome, my love! 💖<br /> Upload your favorite memory and make my heart smile! 😘</span>
                   </div>
 
@@ -119,17 +109,18 @@ export const UpLoadImage = () => {
                           <form onSubmit={sendImage}>
                               <div className="upload_form">
                                 <div className="upload_input desck up">
-                                  <label htmlFor="description" style={theme === "light" ? dark : null}>Description</label>
+                                  <label htmlFor="description" >Description</label>
                                   <input 
-                                  style={theme === "light" ? b : null}
                                   type="text" 
                                   name='description' 
                                   value={data.description} 
                                   onChange={(e) => {
                                       setData((currentData) => ({...currentData, description: e.target.value}))
-                                  }} />
+                                  }} 
+                                  
+                                  />
 
-                                  <button>
+                                  <button disabled>
                                     <i className='bi bi-paragraph'></i>
                                   </button>
                                 </div>
@@ -137,20 +128,54 @@ export const UpLoadImage = () => {
                                 <div className="upload_input_image">
                                   <input 
                                     type="file" 
+                                    id='upl'
                                     name='media' 
                                     accept="image/*, video/*"
-                                    onChange={handleMediaChange} />
+                                    onChange={handleMediaChange}
+                                    hidden
+                                     />
 
-                                    {image && data.media && (
-                                      data.media.type.startsWith('video/') ? (
-                                        <video controls src={image} width="300" />
-                                      ) : (
-                                        <img src={image} alt="preview" width="300" />
-                                      )
-                                    )}
+                                     <label htmlFor="upl">
+                                      <div className="inner_sel">
+                                        {!image && 
+                                        <div className="not_sel_img">
+                                          <p>Click to select a media</p>
+                                        </div>
+                                        }
+
+                                        {image && data.media && (
+                                          data.media.type.startsWith('video/') ? (
+                                            <div className='media_sel'>
+                                              <video controls src={image} width="300"  />
+                                              <div className="remove_video">
+                                                <button onClick={() => setImage(null)}>
+                                                <span>Remove</span>
+                                                <i className='bi bi-trash'></i>
+                                                </button>
+                                              </div>
+                                            </div>
+                                            
+                                          ) : (
+                                            <div className='media_sel'>
+                                              <img src={image} alt="preview" width="300" />
+                                              <div className="remove_image">
+                                                <button onClick={() => setImage(null)}>
+                                                  <span>Remove</span>
+                                                  <i className='bi bi-trash'></i>
+                                                </button>
+                                              </div>
+                                            </div>
+                                            
+                                          )
+                                        )}
+                                        
+                                      </div>
+                                     </label>
+
+                                    
                                 </div>
 
-                                  <div className="upload_button">
+                                  <div className="upload_button" style={{position:"relative", marginTop: image ? "200px" :"0"}}>
                                     <button>{isLoading ? <Loader /> : "Upload"}</button>
                                   </div>
                               </div>

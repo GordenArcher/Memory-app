@@ -1,20 +1,16 @@
 import { useContext, useEffect, useState, useMemo } from 'react';
 import ProfileImage from '../assets/avatar-4.png';
 import { AuthContext } from '../utils/context/AuthContext';
-import { FetchProfilePic } from '../utils/hooks/GetUserProfile';
 import { Notify } from '../components/Notify';
 import { toast } from 'react-toastify';
 import '../assets/CSS/profile.css';
-import { FetchUser } from '../utils/hooks/FetchUser';
 import { useNavigate } from 'react-router-dom';
 
 export const Profile = () => {
 
     const [profilePic, setProfilePic] = useState(null);
-    const { token, logOut, theme, setPageTheme } = useContext(AuthContext);
-    const { pic } = FetchProfilePic();
+    const { token, logOut, userProfile } = useContext(AuthContext);
     const notify = (e) => toast(e);
-    const { user } = FetchUser();
     const navigate = useNavigate();
 
     const handleImageUpload = (e) => {
@@ -71,26 +67,17 @@ export const Profile = () => {
 
     }, [token, profilePic]);
 
-    const dark = useMemo(() => ({
-        background: "black",
-        color: "white"
-    }), []);
-
-    const b = useMemo(() => ({
-        border: "1px solid #ccc"
-    }), []);
-
     const profileImageUrl = useMemo(() => {
-        return pic.profile_image 
-            ? `https://gordenarcher.pythonanywhere.com/${pic.profile_image}` 
+        return userProfile.profile_image 
+            ? `https://gordenarcher.pythonanywhere.com/${userProfile.profile_image}` 
             : ProfileImage;
-    }, [pic.profile_image]);
+    }, [userProfile.profile_image]);
 
     return (
-        <div className="profile_" style={theme === "light" ? dark : null}>
+        <div className="profile_">
             <div className="profile-container">
                 <div className="profile_wrap">
-                    <div className="profile_right" style={theme === "light" ? b : null}>
+                    <div className="profile_right">
                         <div className="profile_main">
                             <div className="profile_right_wrapper">
                                 <div className="profile_head">
@@ -125,29 +112,29 @@ export const Profile = () => {
                                     <div className="profile_list_item">
                                         <ul>
                                             <li>
-                                                <div className="col" style={theme === "light" ? dark : null}>
+                                                <div className="col" >
                                                     <div className="icon">
                                                         <i className="bi bi-person-fill"></i>
                                                     </div>
                                                     <div className="name">
-                                                        <p>{user.username}</p>
+                                                        <p>{userProfile.user.username}</p>
                                                     </div>
                                                 </div>
                                             </li>
 
                                             <li>
-                                                <div className="col" style={theme === "light" ? dark : null}>
+                                                <div className="col">
                                                     <div className="icon">
                                                         <i className="bi bi-envelope-fill"></i>
                                                     </div>
                                                     <div className="name">
-                                                        <p>{user.email ? user.email : "-"}</p>
+                                                        <p>{userProfile.user.email ? userProfile.user.email : "-"}</p>
                                                     </div>
                                                 </div>
                                             </li>
 
-                                            <li>
-                                                <div className="col" style={theme === "light" ? dark : null}>
+                                            {/* <li>
+                                                <div className="col" >
                                                     <div className="name tt">
                                                         {theme === "light" ? (
                                                             <>
@@ -167,7 +154,7 @@ export const Profile = () => {
                                                         <label htmlFor="view" onClick={() => setPageTheme(current => !current)}></label>
                                                     </div>
                                                 </div>
-                                            </li>
+                                            </li> */}
 
                                             <li style={{color:'red'}} className='out' onClick={logOutUser}>
                                                 <div className="icon">

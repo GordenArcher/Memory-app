@@ -1,6 +1,6 @@
 export const Loader = () => {
   return (
-    <div>
+    <div className="mid">
       <span className="loader"></span>
     </div>
   )

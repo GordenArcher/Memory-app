@@ -1,16 +1,14 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Notify } from "../components/Notify";
 import '../assets/CSS/chat.css';
 import Bot from '../assets/bott.png';
 import sendImg from '../assets/se.png';
 import NonImg from '../assets/e.svg';
-import { AuthContext } from "../utils/context/AuthContext";
 
 export const Chat = () => {
 
     const notify = (e) => toast(e);
-    const { theme } = useContext(AuthContext)
 
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState([]);
@@ -62,22 +60,8 @@ export const Chat = () => {
         }
     }, [response]);
 
-    const dark = {
-        background: "black",
-        color : "white",
-    }
-
-    const c = {
-        color : "black"
-    }
-
-    const j = {
-        border : "1px solic #ccc",
-        color : "white"
-    }
-
     return (
-        <div className="chat" style={theme === "light" ? dark : null}>
+        <div className="chat" >
             <div className="chat_content">
                 <div className="chat_wrapper">
                     <div className="chat_view">
@@ -113,7 +97,7 @@ export const Chat = () => {
                                                 )}
                                             </div>
                                             <div className={msg.sender === "user" ? "act_mess_sent" : "act_res"}>
-                                                <div style={theme === "light" ? c : null}>{msg.text || "Loading..."}</div>
+                                                <div >{msg.text || "Loading..."}</div>
                                             </div>
                                         </div>
                                     ))
@@ -126,7 +110,6 @@ export const Chat = () => {
                     <div className="chat_input">
                         <div className="s_chatm">
                             <input
-                                style={theme === "light" ? j : null}
                                 ref={textareaRef}
                                 type="text"
                                 name="text"

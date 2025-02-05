@@ -3,10 +3,10 @@
   "appName": "Recuerdo",
   "webDir": "dist",
   "bundledWebRuntime": false,
-  "android": {
-    "icon": "public/memory.jpg"
+  "server": {
+    "allowNavigation": ["https://gordenarcher.pythonanywhere.com"]
   },
-  "ios": {
-    "icon": "public/memory.jpg"
+  "android": {
+    "allowMixedContent": true
   }
 }

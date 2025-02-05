@@ -8,6 +8,10 @@ export const Navbar = () => {
     const { pic } = FetchProfilePic()
 
 
+    const profile = !pic.profile_image ?
+    Avatar 
+    : 
+    `https://gordenarcher.pythonanywhere.com/${pic.profile_image}`
 
   return (
     <div className="nav">
@@ -56,7 +60,7 @@ export const Navbar = () => {
                             </Link>
                         </li>
 
-                        <li>
+                        {/* <li>
                             <Link to={"/chat"}>
                                 <div className="icon">
                                     <i className="bi bi-asterisk"></i>
@@ -65,7 +69,7 @@ export const Navbar = () => {
                                     <p>Chat AI</p>
                                 </div>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>
@@ -73,7 +77,7 @@ export const Navbar = () => {
             <div className="profile">
                 <div className="set-profile">
                     <div className="profile_image">
-                        <img src={pic.profile_image === "" ? Avatar : `https://gordenarcher.pythonanywhere.com${pic.profile_image}` } alt="profile image" />
+                        <img src={profile} alt="profile image" />
                     </div>
                 </div>
                 

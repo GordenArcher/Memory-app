@@ -18,7 +18,7 @@ export const Tab = () => {
                         </Link>
                     </li>
 
-                    <li>
+                    {/* <li>
                         <Link to={"/chat"}>
                             <div className="col">
                                 <button className="icon">
@@ -28,7 +28,7 @@ export const Tab = () => {
                                 </button>
                             </div>
                         </Link>
-                    </li>
+                    </li> */}
 
                     <li>
                         <Link to={"/upload"} >

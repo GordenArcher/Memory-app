@@ -7,7 +7,7 @@ export const MemoryComp = ({ d }) => {
     const dateCreated = d.date_created;
     const date = new Date(dateCreated);
     const newDate = date.toDateString();
-    const { play, pause, controls, videoRefs, endVideo, theme } = useContext(AuthContext)
+    const { play, pause, controls, videoRefs, endVideo } = useContext(AuthContext)
 
     const navigate = useNavigate();
 
@@ -15,13 +15,8 @@ export const MemoryComp = ({ d }) => {
         navigate(`view-memory/${d.id}/`, { state: { memoryData: d } });
     };
 
-    const dark = {
-        background: "black",
-        color : "white"
-    }
-
     return (
-        <div className="memory-container" aria-label="View memory details" style={theme === "light" ? dark : null}>
+        <div className="memory-container" aria-label="View memory details">
             <div className="mem-wrapper">
                 <div className="memory_image">
                 {d.media && (
@@ -63,7 +58,7 @@ export const MemoryComp = ({ d }) => {
                 )}
 
                 <div className="memory-date">
-                    <div className="date" style={theme === "light" ? dark : null}>
+                    <div className="date">
                         <span>Uploaded on </span>
                         
                         <p>{newDate}</p>
@@ -78,7 +73,7 @@ export const MemoryComp = ({ d }) => {
 MemoryComp.propTypes = {
     d: PropTypes.shape({
         date_created: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         media: PropTypes.string,
         description: PropTypes.string,
     }).isRequired,

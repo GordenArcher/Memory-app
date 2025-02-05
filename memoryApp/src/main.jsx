@@ -1,15 +1,19 @@
-import { StrictMode } from 'react'
+import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
+const App = lazy(() => import("./App.jsx"))
 import { AuthContextprovider } from './utils/context/AuthContext.jsx'
+import { PageLoad } from './components/PageLoad.jsx'
 
 createRoot(document.getElementById('memory_app')).render(
   <StrictMode>
     <BrowserRouter>
     <AuthContextprovider>
-    <App />
+      <Suspense fallback={ <PageLoad />}>
+        <App />
+      </Suspense>
+      
     </AuthContextprovider>
     </BrowserRouter>
   </StrictMode>,

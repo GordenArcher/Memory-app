@@ -12,17 +12,17 @@
     height: 100%;
 }
 
-.mm .memory_image img{
+.mm .memory_image img, .mm .memory_image video{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 70%;
-    height: 100%;
+    height: 500px;
     cursor: pointer;
 }
 
 .memo-about{
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 .mm .date{
@@ -102,7 +102,7 @@
         height: 100%;
     }
     
-    .mm .memory_image img{
+    .mm .memory_image img, .mm .memory_image video{
         width: 100%;
         height: 100%;
     }

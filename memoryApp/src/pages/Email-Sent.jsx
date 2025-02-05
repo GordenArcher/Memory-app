@@ -8,7 +8,7 @@ export const EmailSent = () => {
             </div>
 
             <div className="sent_mess">
-                <h2>Babe check your mail to reset your password...</h2>
+                <h2>check your mail to reset your password...</h2>
             </div>
         </div>
     </div>

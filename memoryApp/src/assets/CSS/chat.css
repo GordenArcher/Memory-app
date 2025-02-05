@@ -169,7 +169,7 @@
 }
 
 .s_chatm input:focus{
-    border: 1px solid hsla(241, 97%, 24%);
+    border: 1px solid hsl(241, 97%, 24%);
 }
 
 .s_c button{

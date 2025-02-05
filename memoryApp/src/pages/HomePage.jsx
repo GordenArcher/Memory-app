@@ -1,38 +1,15 @@
 import '../assets/CSS/home.css'
-import { FetchData } from "../utils/hooks/FetchData"
 import { MemoryComp } from '../components/MemoryComp'
 import { HomeLoader } from '../components/HomeLoader'
-import { useEffect, useState, useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import EmptyImg from '../assets/empty.svg'
 import { AuthContext } from '../utils/context/AuthContext'
 
 export const HomePage = () => {
 
-    const { data, isLoading } = FetchData()
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
-    const { theme } = useContext(AuthContext)
+    const { dataFetched, isLoadingData } = useContext(AuthContext)
 
-    useEffect(() => {
-        const updateStatus = () => setIsOnline(navigator.onLine);
-
-        window.addEventListener("online", updateStatus);
-        window.addEventListener("offline", updateStatus);
-
-        return () => {
-            window.removeEventListener("online", updateStatus);
-            window.removeEventListener("offline", updateStatus);
-        };
-    }, []);
-
-    const refreshPage = () => {
-        window.location.reload();
-    };
-
-    const dark = {
-        background: "black",
-        color : "white",
-    }
 
     const groupUploadsByTimeframe = (uploads) => {
         const now = new Date();
@@ -44,7 +21,7 @@ export const HomePage = () => {
         uploads.forEach((upload) => {
             const uploadedDate = new Date(upload.date_created);
             const diffTime = now - uploadedDate;
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // Difference in days
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     
             if (diffDays < 1) {
                 today.push(upload); 
@@ -61,29 +38,18 @@ export const HomePage = () => {
 
     }   
 
-    const groupedUploads = data && data.length > 0 ? groupUploadsByTimeframe(data) : {};
+    const groupedUploads = dataFetched && dataFetched.length > 0 ? groupUploadsByTimeframe(dataFetched) : {};
 
   return (
     <>
-    <div className="home" style={theme === "light" ? dark : null}>
+    <div className="home">
 
         <div className="main_page">
             <main>
                 <div className="main-memory">
 
                     { 
-                    !isOnline ? 
-                    (
-                        <div className='offline' style={{ textAlign: "center", padding: "20px", backgroundColor: "#ffcccc" }}>
-                            <p>You are offline. Check your connection.</p>
-                            <button onClick={refreshPage} style={{ padding: "10px 20px", cursor: "pointer" }}>
-                                Refresh
-                            </button>
-                        </div>
-                    ) 
-                    :                 
-                    (
-                        isLoading 
+                        isLoadingData 
 
                         ?
                         
@@ -95,7 +61,7 @@ export const HomePage = () => {
 
                         (
 
-                        data && data.length > 0 ? 
+                            dataFetched && dataFetched.length > 0 ? 
                         (
                             <div className="main_data">
                                 {groupedUploads.today.length > 0 && (
@@ -156,7 +122,6 @@ export const HomePage = () => {
                             </div>
                         )
                         )
-                    )
                     }
                 </div>
 
